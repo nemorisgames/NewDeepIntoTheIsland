@@ -1,0 +1,198 @@
+fileFormatVersion: 2
+guid: 62ba6a6c11eb0244a992b79db4e45434
+timeCreated: 1485210834
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Box004
+    100002: Cylinder001
+    100004: Cylinder002
+    100006: Cylinder003
+    100008: Cylinder004
+    100010: Cylinder005
+    100012: Cylinder025
+    100014: Cylinder028
+    100016: Cylinder029
+    100018: Cylinder030
+    100020: Cylinder033
+    100022: //RootNode
+    100024: Lavaplatos
+    100026: Lena010
+    100028: Lena011
+    100030: Lena012
+    100032: Lena013
+    100034: Lena014
+    100036: Lena015
+    100038: Lena016
+    100040: Lena017
+    100042: Lena018
+    100044: Lena019
+    100046: Lena020
+    100048: Lena021
+    100050: Lena022
+    400000: Box004
+    400002: Cylinder001
+    400004: Cylinder002
+    400006: Cylinder003
+    400008: Cylinder004
+    400010: Cylinder005
+    400012: Cylinder025
+    400014: Cylinder028
+    400016: Cylinder029
+    400018: Cylinder030
+    400020: Cylinder033
+    400022: //RootNode
+    400024: Lavaplatos
+    400026: Lena010
+    400028: Lena011
+    400030: Lena012
+    400032: Lena013
+    400034: Lena014
+    400036: Lena015
+    400038: Lena016
+    400040: Lena017
+    400042: Lena018
+    400044: Lena019
+    400046: Lena020
+    400048: Lena021
+    400050: Lena022
+    2300000: Box004
+    2300002: Cylinder001
+    2300004: Cylinder002
+    2300006: Cylinder003
+    2300008: Cylinder004
+    2300010: Cylinder005
+    2300012: Cylinder025
+    2300014: Cylinder028
+    2300016: Cylinder029
+    2300018: Cylinder030
+    2300020: Cylinder033
+    2300022: Lavaplatos
+    2300024: Lena010
+    2300026: Lena011
+    2300028: Lena012
+    2300030: Lena013
+    2300032: Lena014
+    2300034: Lena015
+    2300036: Lena016
+    2300038: Lena017
+    2300040: Lena018
+    2300042: Lena019
+    2300044: Lena020
+    2300046: Lena021
+    2300048: Lena022
+    3300000: Box004
+    3300002: Cylinder001
+    3300004: Cylinder002
+    3300006: Cylinder003
+    3300008: Cylinder004
+    3300010: Cylinder005
+    3300012: Cylinder025
+    3300014: Cylinder028
+    3300016: Cylinder029
+    3300018: Cylinder030
+    3300020: Cylinder033
+    3300022: Lavaplatos
+    3300024: Lena010
+    3300026: Lena011
+    3300028: Lena012
+    3300030: Lena013
+    3300032: Lena014
+    3300034: Lena015
+    3300036: Lena016
+    3300038: Lena017
+    3300040: Lena018
+    3300042: Lena019
+    3300044: Lena020
+    3300046: Lena021
+    3300048: Lena022
+    4300000: Lavaplatos
+    4300002: Box004
+    4300004: Lena010
+    4300006: Lena011
+    4300008: Lena012
+    4300010: Lena013
+    4300012: Lena014
+    4300014: Lena015
+    4300016: Lena016
+    4300018: Lena017
+    4300020: Lena018
+    4300022: Lena019
+    4300024: Lena020
+    4300026: Lena021
+    4300028: Lena022
+    4300030: Cylinder001
+    4300032: Cylinder002
+    4300034: Cylinder003
+    4300036: Cylinder004
+    4300038: Cylinder005
+    4300040: Cylinder025
+    4300042: Cylinder028
+    4300044: Cylinder029
+    4300046: Cylinder030
+    4300048: Cylinder033
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

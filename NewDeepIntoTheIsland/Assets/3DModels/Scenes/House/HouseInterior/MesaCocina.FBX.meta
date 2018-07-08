@@ -1,0 +1,163 @@
+fileFormatVersion: 2
+guid: 2861769d97ba3694da479bfdd46b2bb6
+timeCreated: 1485210833
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Box003
+    100002: Cylinder009
+    100004: Cylinder016
+    100006: Cylinder017
+    100008: Cylinder018
+    100010: Cylinder019
+    100012: Cylinder020
+    100014: Cylinder021
+    100016: Cylinder023
+    100018: Cylinder024
+    100020: Cylinder031
+    100022: Cylinder032
+    100024: mesa
+    100026: //RootNode
+    100028: Sphere002
+    100030: Sphere003
+    100032: Tasa004
+    100034: Tasa005
+    100036: Tasa006
+    400000: Box003
+    400002: Cylinder009
+    400004: Cylinder016
+    400006: Cylinder017
+    400008: Cylinder018
+    400010: Cylinder019
+    400012: Cylinder020
+    400014: Cylinder021
+    400016: Cylinder023
+    400018: Cylinder024
+    400020: Cylinder031
+    400022: Cylinder032
+    400024: mesa
+    400026: //RootNode
+    400028: Sphere002
+    400030: Sphere003
+    400032: Tasa004
+    400034: Tasa005
+    400036: Tasa006
+    2300000: Box003
+    2300002: Cylinder009
+    2300004: Cylinder016
+    2300006: Cylinder017
+    2300008: Cylinder018
+    2300010: Cylinder019
+    2300012: Cylinder020
+    2300014: Cylinder021
+    2300016: Cylinder023
+    2300018: Cylinder024
+    2300020: Cylinder031
+    2300022: Cylinder032
+    2300024: mesa
+    2300026: Sphere002
+    2300028: Sphere003
+    2300030: Tasa004
+    2300032: Tasa005
+    2300034: Tasa006
+    3300000: Box003
+    3300002: Cylinder009
+    3300004: Cylinder016
+    3300006: Cylinder017
+    3300008: Cylinder018
+    3300010: Cylinder019
+    3300012: Cylinder020
+    3300014: Cylinder021
+    3300016: Cylinder023
+    3300018: Cylinder024
+    3300020: Cylinder031
+    3300022: Cylinder032
+    3300024: mesa
+    3300026: Sphere002
+    3300028: Sphere003
+    3300030: Tasa004
+    3300032: Tasa005
+    3300034: Tasa006
+    4300000: mesa
+    4300002: Box003
+    4300004: Cylinder009
+    4300006: Cylinder016
+    4300008: Cylinder017
+    4300010: Cylinder018
+    4300012: Cylinder019
+    4300014: Cylinder020
+    4300016: Tasa004
+    4300018: Tasa005
+    4300020: Tasa006
+    4300022: Cylinder021
+    4300024: Cylinder023
+    4300026: Cylinder024
+    4300028: Sphere002
+    4300030: Sphere003
+    4300032: Cylinder031
+    4300034: Cylinder032
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

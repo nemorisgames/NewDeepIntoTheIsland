@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: trunk_BakedWind_24m
   m_Shader: {fileID: 4800000, guid: 756bac9090102564582875f4c7e30202, type: 3}
-  m_ShaderKeywords: _ANIM_HIERARCHY_PIVOT _DETAIL_MAP_PEEL _DISABLE_DBUFFER _DISPLACEMENT_LOCK_TILING_SCALE
+  m_ShaderKeywords: _ANIM_HIERARCHY_PIVOT _DISABLE_DBUFFER _DISPLACEMENT_LOCK_TILING_SCALE
     _HEIGHTMAP _MASKMAP _NORMALMAP _NORMALMAP_TANGENT_SPACE _TESSELLATION_DISPLACEMENT
     _TESSELLATION_PHONG _VERTEX_DISPLACEMENT_LOCK_OBJECT_SCALE
   m_LightmapFlags: 4
@@ -63,7 +63,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailMap:
-        m_Texture: {fileID: 2800000, guid: e9c237c2c82c7e94396649b77ac99e58, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailMap2:
@@ -326,7 +326,7 @@ Material:
     - _DepthOffset: 0
     - _DepthOffsetEnable: 0
     - _DetailAlbedoScale: 0.943
-    - _DetailMode: 4
+    - _DetailMode: 0
     - _DetailNormalMapScale: 1
     - _DetailNormalScale: 1
     - _DetailSmoothnessScale: 0.17

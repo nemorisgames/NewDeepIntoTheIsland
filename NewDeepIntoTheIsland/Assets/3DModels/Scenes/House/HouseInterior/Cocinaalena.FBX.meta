@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: 7fe5b9ebe7eaa0e42a6823019d447142
+timeCreated: 1485210835
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Chimenea002
+    100002: Chimenea003
+    100004: Cocina
+    100006: //RootNode
+    100008: Lena01
+    100010: Lena02
+    100012: Lena03
+    100014: Lena04
+    100016: Lena05
+    100018: Lena06
+    100020: Lena07
+    100022: Lena08
+    100024: Lena09
+    100026: Shoe01
+    100028: shoe02
+    400000: Chimenea002
+    400002: Chimenea003
+    400004: Cocina
+    400006: //RootNode
+    400008: Lena01
+    400010: Lena02
+    400012: Lena03
+    400014: Lena04
+    400016: Lena05
+    400018: Lena06
+    400020: Lena07
+    400022: Lena08
+    400024: Lena09
+    400026: Shoe01
+    400028: shoe02
+    2300000: Chimenea002
+    2300002: Chimenea003
+    2300004: Cocina
+    2300006: Lena01
+    2300008: Lena02
+    2300010: Lena03
+    2300012: Lena04
+    2300014: Lena05
+    2300016: Lena06
+    2300018: Lena07
+    2300020: Lena08
+    2300022: Lena09
+    2300024: Shoe01
+    2300026: shoe02
+    3300000: Chimenea002
+    3300002: Chimenea003
+    3300004: Cocina
+    3300006: Lena01
+    3300008: Lena02
+    3300010: Lena03
+    3300012: Lena04
+    3300014: Lena05
+    3300016: Lena06
+    3300018: Lena07
+    3300020: Lena08
+    3300022: Lena09
+    3300024: Shoe01
+    3300026: shoe02
+    4300000: Chimenea002
+    4300002: Cocina
+    4300004: Lena06
+    4300006: Lena07
+    4300008: Lena09
+    4300010: Lena08
+    4300012: Lena03
+    4300014: Lena02
+    4300016: Lena05
+    4300018: Lena04
+    4300020: Lena01
+    4300022: Shoe01
+    4300024: shoe02
+    4300026: Chimenea003
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

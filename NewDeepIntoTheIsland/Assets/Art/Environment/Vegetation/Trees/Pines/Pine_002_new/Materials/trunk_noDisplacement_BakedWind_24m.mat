@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: trunk_noDisplacement_BakedWind_24m
   m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
-  m_ShaderKeywords: _ANIM_HIERARCHY_PIVOT _DETAIL_MAP_PEEL _HEIGHTMAP _MASKMAP _NORMALMAP
+  m_ShaderKeywords: _ANIM_HIERARCHY_PIVOT _DETAIL_MAP _HEIGHTMAP _MASKMAP _NORMALMAP
     _NORMALMAP_TANGENT_SPACE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
@@ -325,7 +325,7 @@ Material:
     - _DepthOffset: 0
     - _DepthOffsetEnable: 0
     - _DetailAlbedoScale: 0.943
-    - _DetailMode: 4
+    - _DetailMode: 0
     - _DetailNormalMapScale: 1
     - _DetailNormalScale: 1
     - _DetailSmoothnessScale: 0.17

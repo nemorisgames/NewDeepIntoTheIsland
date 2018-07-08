@@ -374,7 +374,7 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: -66.6
+    value: -15
   tint:
     overrideState: 1
     value: 0
@@ -386,7 +386,7 @@ MonoBehaviour:
     value: 0
   saturation:
     overrideState: 1
-    value: -76
+    value: -50
   brightness:
     overrideState: 1
     value: 0
@@ -395,7 +395,7 @@ MonoBehaviour:
     value: 1.95
   contrast:
     overrideState: 1
-    value: 35.9
+    value: 25
   mixerRedOutRedIn:
     overrideState: 1
     value: 100

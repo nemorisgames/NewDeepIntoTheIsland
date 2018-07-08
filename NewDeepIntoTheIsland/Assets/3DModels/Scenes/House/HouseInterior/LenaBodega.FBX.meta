@@ -1,0 +1,208 @@
+fileFormatVersion: 2
+guid: ab9cd6c426afd9843819de0775f59554
+timeCreated: 1485210837
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: CajaLena
+    100002: Lena023
+    100004: Lena024
+    100006: Lena025
+    100008: Lena026
+    100010: Lena027
+    100012: Lena028
+    100014: Lena029
+    100016: Lena030
+    100018: Lena031
+    100020: Lena032
+    100022: Lena033
+    100024: Lena034
+    100026: Lena035
+    100028: Lena036
+    100030: Lena037
+    100032: Lena038
+    100034: Lena039
+    100036: Lena040
+    100038: Lena041
+    100040: Lena042
+    100042: Lena043
+    100044: Lena044
+    100046: Lena045
+    100048: Lena046
+    100050: Lena047
+    100052: Lena048
+    100054: //RootNode
+    400000: CajaLena
+    400002: Lena023
+    400004: Lena024
+    400006: Lena025
+    400008: Lena026
+    400010: Lena027
+    400012: Lena028
+    400014: Lena029
+    400016: Lena030
+    400018: Lena031
+    400020: Lena032
+    400022: Lena033
+    400024: Lena034
+    400026: Lena035
+    400028: Lena036
+    400030: Lena037
+    400032: Lena038
+    400034: Lena039
+    400036: Lena040
+    400038: Lena041
+    400040: Lena042
+    400042: Lena043
+    400044: Lena044
+    400046: Lena045
+    400048: Lena046
+    400050: Lena047
+    400052: Lena048
+    400054: //RootNode
+    2300000: CajaLena
+    2300002: Lena023
+    2300004: Lena024
+    2300006: Lena025
+    2300008: Lena026
+    2300010: Lena027
+    2300012: Lena028
+    2300014: Lena029
+    2300016: Lena030
+    2300018: Lena031
+    2300020: Lena032
+    2300022: Lena033
+    2300024: Lena034
+    2300026: Lena035
+    2300028: Lena036
+    2300030: Lena037
+    2300032: Lena038
+    2300034: Lena039
+    2300036: Lena040
+    2300038: Lena041
+    2300040: Lena042
+    2300042: Lena043
+    2300044: Lena044
+    2300046: Lena045
+    2300048: Lena046
+    2300050: Lena047
+    2300052: Lena048
+    3300000: CajaLena
+    3300002: Lena023
+    3300004: Lena024
+    3300006: Lena025
+    3300008: Lena026
+    3300010: Lena027
+    3300012: Lena028
+    3300014: Lena029
+    3300016: Lena030
+    3300018: Lena031
+    3300020: Lena032
+    3300022: Lena033
+    3300024: Lena034
+    3300026: Lena035
+    3300028: Lena036
+    3300030: Lena037
+    3300032: Lena038
+    3300034: Lena039
+    3300036: Lena040
+    3300038: Lena041
+    3300040: Lena042
+    3300042: Lena043
+    3300044: Lena044
+    3300046: Lena045
+    3300048: Lena046
+    3300050: Lena047
+    3300052: Lena048
+    4300000: Lena023
+    4300002: Lena024
+    4300004: Lena025
+    4300006: CajaLena
+    4300008: Lena026
+    4300010: Lena027
+    4300012: Lena028
+    4300014: Lena029
+    4300016: Lena030
+    4300018: Lena031
+    4300020: Lena032
+    4300022: Lena033
+    4300024: Lena034
+    4300026: Lena035
+    4300028: Lena036
+    4300030: Lena037
+    4300032: Lena038
+    4300034: Lena039
+    4300036: Lena040
+    4300038: Lena041
+    4300040: Lena042
+    4300042: Lena043
+    4300044: Lena044
+    4300046: Lena045
+    4300048: Lena046
+    4300050: Lena047
+    4300052: Lena048
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
