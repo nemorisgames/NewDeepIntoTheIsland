@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.Rendering.PostProcessing;
 
 public class CellPhone : MonoBehaviour
 {
@@ -45,12 +46,18 @@ public class CellPhone : MonoBehaviour
 	float defaultIntensity = 0;
 	bool defaultLightEnabled = false;
 
-	void Start()
+    public PostProcessVolume volume;
+    DepthOfField depthOfField;
+    MotionBlur motionBlur;
+
+    void Start()
 	{
 		notification.SetActive(false);
 		cellphoneBody = transform.Find("Cuerpo").gameObject;
 		cellphoneBody.SetActive(active);
-	}
+        volume.profile.TryGetSettings(out depthOfField);
+        volume.profile.TryGetSettings(out motionBlur);
+    }
 	void Awake()
 	{
 		target = GameObject.FindWithTag("Player").transform.Find("FPSCamera");
@@ -74,7 +81,7 @@ public class CellPhone : MonoBehaviour
 	{
 		this.active = active;
 		cellphoneBody.SetActive(active);
-	}
+    }
 	void LateUpdate()
 	{
 
@@ -103,7 +110,6 @@ public class CellPhone : MonoBehaviour
 		//Checkout on cellphone
 		if (Input.GetButtonDown("Fire2"))
 		{
-            print("dadas");
 			if (!inTransition)
 			{
 				selected = !selected;
@@ -117,7 +123,9 @@ public class CellPhone : MonoBehaviour
 					ResetToDefaults();
 					transform.parent = null;
 				}
-			}
+                depthOfField.active = !selected;
+                motionBlur.active = !selected;
+            }
 			ScreenManager.Instance.CloseScreen();
 		}
 
