@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Experimental.Rendering;
 
 public class TakePhoto : MonoBehaviour
 {
@@ -32,7 +33,22 @@ public class TakePhoto : MonoBehaviour
 		Debug.Log("Saving Screen Shot");
 		save = true;
 	}
-	void OnPostRender()
+
+    public void OnEnable()
+    {
+        // register the callback when enabling object
+        RenderPipeline.beginCameraRendering += CameraFinishRender;
+        //Camera.onPostRender += CameraFinishRender;
+    }
+
+    public void OnDisable()
+    {
+        // remove the callback when disabling object
+        RenderPipeline.beginCameraRendering -= CameraFinishRender;
+        //Camera.onPostRender -= CameraFinishRender;
+    }
+
+    void CameraFinishRender(Camera cam)
 	{
 		if (save)
 		{

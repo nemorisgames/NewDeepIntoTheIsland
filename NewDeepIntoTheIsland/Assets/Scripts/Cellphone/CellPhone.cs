@@ -49,6 +49,8 @@ public class CellPhone : MonoBehaviour
     public PostProcessVolume volume;
     DepthOfField depthOfField;
     MotionBlur motionBlur;
+    MeshRenderer[] phoneRenderers;
+    SkinnedMeshRenderer[] handRenderers;
 
     void Start()
 	{
@@ -57,6 +59,9 @@ public class CellPhone : MonoBehaviour
 		cellphoneBody.SetActive(active);
         volume.profile.TryGetSettings(out depthOfField);
         volume.profile.TryGetSettings(out motionBlur);
+        phoneRenderers = GetComponentsInChildren<MeshRenderer>();
+        handRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        showHandAndPhone(false);
     }
 	void Awake()
 	{
@@ -66,6 +71,18 @@ public class CellPhone : MonoBehaviour
 		defaultLightEnabled = light.enabled;
 		Instance = this;
 	}
+
+    void showHandAndPhone(bool show)
+    {
+        foreach(MeshRenderer m in phoneRenderers)
+        {
+            m.enabled = show;
+        }
+        foreach (SkinnedMeshRenderer m in handRenderers)
+        {
+            m.enabled = show;
+        }
+    }
 
 	public void activate()
 	{
@@ -125,6 +142,7 @@ public class CellPhone : MonoBehaviour
 				}
                 depthOfField.active = !selected;
                 motionBlur.active = !selected;
+                showHandAndPhone(selected);
             }
 			ScreenManager.Instance.CloseScreen();
 		}
