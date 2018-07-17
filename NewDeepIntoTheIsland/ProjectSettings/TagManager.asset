@@ -3,11 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Triggerer
-  - Grass
-  - Stone
-  - BackgroundCamera
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -17,30 +13,30 @@ TagManager:
   - UI
   - 
   - 
-  - NavMesh
-  - BackgroundImage
-  - DistantHotspot
-  - OnlySeenByPhone
+  - Player
+  - PostProcessing
+  - AreaVolume
+  - 
+  - 
+  - 
+  - 
+  - Terrain
+  - EnvironmentSmall
+  - EnvironmentLarge
+  - ScatterTiny
+  - ScatterSmall
+  - UndergrowthSmall
+  - UndergrowthMedium
+  - UndergrowthLarge
+  - GroundScatter
   - 
   - 
   - 
   - 
   - 
-  - Vegetation
   - 
-  - 
-  - 
-  - MovableObject
-  - Ragdoll
-  - RemotePlayer
-  - IgnoreBullets
-  - Enemy
-  - Pickup
-  - Trigger
-  - MovingPlatform
-  - Debris
-  - LocalPlayer
-  - Weapon
+  - ScatterSkyDome
+  - SPECIAL
   m_SortingLayers:
   - name: Default
     uniqueID: 0

@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a67059743613d4dbb8de399ec529634f, type: 3}
-  m_Name: MenuManager
+  m_Name: DeepIntoTheIsland_MenuManager
   m_EditorClassIdentifier: 
   eventSystem: {fileID: 0}
   menus: []
