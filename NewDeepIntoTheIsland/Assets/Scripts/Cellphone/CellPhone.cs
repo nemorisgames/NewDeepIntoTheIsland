@@ -12,18 +12,18 @@ public class CellPhone : MonoBehaviour
 	public float speedRotation = 1f;
 	public Vector3 position;
 	public Vector3 positionSelected;
-	bool selected = false;
+	bool phoneUp = false;
 	public Light light;
 	public Light lightStandBy;
-	bool inTransition = false;
+	bool bringingPhoneUp = false;
 	public bool active = false;
 
 	[Header("For Functions")]
-	public GameObject[] functions;
-	public GameObject[] selectors;
-	public Color selectedColor;
-	public Color unselectedColor;
-	public enum CellphoneFunctions { Light, CameraPhoto, ReviewPhotos, Call };
+	public TweenAlpha[] functions;
+	//public GameObject[] selectors;
+	//public Color phoneUpColor;
+	//public Color unphoneUpColor;
+	public enum CellphoneFunctions { Light, CameraPhoto, ReviewPhotos, Call};
 	public CellphoneFunctions currentFunction = CellphoneFunctions.Light;
     
 	int indiceActual = 0;
@@ -102,7 +102,7 @@ public class CellPhone : MonoBehaviour
 	void LateUpdate()
 	{
 
-		if (!selected)
+		if (!phoneUp)
 		{
 			if (target != null)
 			{
@@ -121,33 +121,41 @@ public class CellPhone : MonoBehaviour
 			}
 		}
 
-		if (!active || ScreenManager.paused)
-			return;
-
 		//Checkout on cellphone
 		if (Input.GetButtonDown("Fire2"))
 		{
-			if (!inTransition)
-			{
-				selected = !selected;
-				if (selected)
-				{
-					StartCoroutine(waitPosition());
-					WhenUsingCellPhone();
-				}
-				else
-				{
-					ResetToDefaults();
-					transform.parent = null;
-				}
-                depthOfField.active = !selected;
-                motionBlur.active = !selected;
-                showHandAndPhone(selected);
+            if (ScreenManager.showingScreen)
+            {
+                ScreenManager.Instance.CloseScreen();
             }
-			ScreenManager.Instance.CloseScreen();
-		}
+            else
+            {
+                if (!bringingPhoneUp)
+                {
+                    print("showing screen " + ScreenManager.showingScreen);
+                    phoneUp = !phoneUp;
+                    if (phoneUp)
+                    {
+                        StartCoroutine(PhoneUpAnimatedTransition());
+                        ShowNotificationIfActive();
+                    }
+                    else
+                    {
+                        ResetToDefaults();
+                        transform.parent = null;
+                    }
+                    depthOfField.active = !phoneUp;
+                    motionBlur.active = !phoneUp;
+                    showHandAndPhone(phoneUp);
+                    ScreenManager.Instance.CloseScreen();
+                }
+            }
+        }
 
-		if (Input.GetAxis("Mouse ScrollWheel") != 0f && canUseMouseScroll && selected)
+        if (!active || ScreenManager.paused)
+            return;
+
+        if (Input.GetAxis("Mouse ScrollWheel") != 0f && canUseMouseScroll && phoneUp)
 		{
 			if (Input.GetAxis("Mouse ScrollWheel") > 0f)
 			{
@@ -160,7 +168,7 @@ public class CellPhone : MonoBehaviour
 		}
 
 		//Cellphone function
-		if (Input.GetButtonDown("Fire1") && selected)
+		if (Input.GetButtonDown("Fire1") && phoneUp)
 		{
 			switch (currentFunction)
 			{
@@ -174,9 +182,12 @@ public class CellPhone : MonoBehaviour
 					ScreenManager.Instance.ShowScreen(ScreenType.PhotoView);
 					canUseMouseScroll = false;
 					break;
-			}
-		}
-		SetFunctionColors((int)currentFunction);
+                case CellphoneFunctions.Call:
+                    ScreenManager.Instance.ShowScreen(ScreenType.Call);
+                    break;
+            }
+        }
+		//SetFunctionColors((int)currentFunction);
 	}
 
 	void turnLight(bool lightOn)
@@ -244,28 +255,30 @@ public class CellPhone : MonoBehaviour
 		isSavingPhoto = false;
 		isTakingPhoto = false;
 	}
-	void SetFunctionColors(int index)
+	/*void SetFunctionColors(int index)
 	{
 		for (int i = 0; i < functions.Length; i++)
 		{
 			if (i == index)
 			{
-				functions[i].GetComponent<Renderer>().material.color = selectedColor;
+				functions[i].GetComponent<Renderer>().material.color = phoneUpColor;
 				selectors[i].SetActive(true);
-				selectors[i].GetComponent<Renderer>().material.color = selectedColor;
+				selectors[i].GetComponent<Renderer>().material.color = phoneUpColor;
 			}
 			else
 			{
-				functions[i].GetComponent<Renderer>().material.color = unselectedColor;
+				functions[i].GetComponent<Renderer>().material.color = unphoneUpColor;
 				selectors[i].SetActive(false);
-				selectors[i].GetComponent<Renderer>().material.color = unselectedColor;
+				selectors[i].GetComponent<Renderer>().material.color = unphoneUpColor;
 			}
 		}
-	}
+	}*/
 	void nextFunction(bool next)
-	{
-		indiceActual = Mathf.Clamp(indiceActual + (next ? 1 : -1), 0, 3);
-		switch (indiceActual)
+    {
+        functions[indiceActual].PlayReverse();
+        indiceActual = Mathf.Clamp(indiceActual + (next ? 1 : -1), 0, 3);
+        functions[indiceActual].PlayForward();
+        switch (indiceActual)
 		{
 			case 0: currentFunction = CellphoneFunctions.Light; break;
 			case 1: currentFunction = CellphoneFunctions.CameraPhoto; break;
@@ -273,18 +286,18 @@ public class CellPhone : MonoBehaviour
 			case 3: currentFunction = CellphoneFunctions.Call; break;
 		}
 	}
-	IEnumerator waitPosition()
+	IEnumerator PhoneUpAnimatedTransition()
 	{
-		inTransition = true;
+		bringingPhoneUp = true;
 		yield return new WaitForSeconds(.3f);
 		transform.parent = target;
 		Vector3 tVec = new Vector3(target.position.x, target.position.y, target.position.z) + target.right * positionSelected.x + target.forward * positionSelected.z + target.up * positionSelected.y;
 		transform.position = tVec;
 		transform.forward = target.forward;
 		transform.rotation = target.rotation;
-		inTransition = false;
+		bringingPhoneUp = false;
 	}
-	void WhenUsingCellPhone()
+	void ShowNotificationIfActive()
 	{
 		if (showingNotification)
 		{

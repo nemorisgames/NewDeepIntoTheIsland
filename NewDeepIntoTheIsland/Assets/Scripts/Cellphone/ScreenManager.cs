@@ -6,6 +6,7 @@ public enum ScreenType
 	BookView,
 	ItemView,
 	Options,
+    Call,
 	Save,
 	Load,
 	Quit,
@@ -17,13 +18,16 @@ public class ScreenManager : MonoBehaviour
 	GameObject[] screens;
 	[SerializeField]
 	GameObject taskScreen;
-	[SerializeField]
+    [SerializeField]
+    TweenAlpha iconsScreen;
+    [SerializeField]
 	bool debug = false;
 	//[SerializeField]
 	//AC.Cutscene pauseGame;
 	//[SerializeField]
 	//AC.Cutscene unPauseGame;
 	public static bool paused = false;
+    public static bool showingScreen = false;
 	private Stack<ScreenType> showedScreens = new Stack<ScreenType>();
 	void Start()
 	{
@@ -46,16 +50,34 @@ public class ScreenManager : MonoBehaviour
 			screens[i].SetActive(false);
 		}
 		taskScreen.SetActive(false);
-	}
+        iconsScreen.PlayForward();
+
+    }
 	public void ShowTaskScreen()
 	{
 		showedScreens.Clear();
 		HideScreens();
-		taskScreen.SetActive(true);
-	}
+        taskScreen.SetActive(true);
+        showingScreen = true;
+    }
 	public void ShowScreen(ScreenType type)
 	{
-		if (screens[(int)type].activeSelf)
+        int index = 0;
+        for(int i = 0; i < screens.Length; i++)
+        {
+            if (type == ScreenType.Call && screens[i].GetComponent<Call>() != null)
+            {
+                index = i;
+                break;
+            }
+            if (type == ScreenType.PhotoView && screens[i].GetComponent<PhotoReview>() != null)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        if (screens[index].activeSelf)
 		{
 			if (!showedScreens.Contains(type))
 			{
@@ -77,24 +99,29 @@ public class ScreenManager : MonoBehaviour
 		switch (type)
 		{
 			case ScreenType.PhotoView:
-				screens[(int)type].GetComponent<PhotoReview>().LoadPhotos();
+				screens[index].GetComponent<PhotoReview>().LoadPhotos();
 				break;
 			case ScreenType.BookView:
-				screens[(int)type].GetComponent<ViewPages>().Load();
+				screens[index].GetComponent<ViewPages>().Load();
 				break;
-			default:
+            case ScreenType.Call:
+                screens[index].GetComponent<Call>().CheckSignal();
+                break;
+            default:
 				break;
 		}
 		showedScreens.Push(type);
 		PauseGame();
-		screens[(int)type].SetActive(true);
-	}
+		screens[index].SetActive(true);
+        showingScreen = true;
+    }
 	public void CloseAllScreens()
 	{
 		HideScreens();
 		showedScreens.Clear();
 		ResumeGame();
-	}
+        showingScreen = false;
+    }
 	public void CloseScreen()
 	{
 		HideScreens();
@@ -102,12 +129,15 @@ public class ScreenManager : MonoBehaviour
 		{
 			ResumeGame();
 			showedScreens.Clear();
-			return;
+            showingScreen = false;
+            iconsScreen.PlayReverse();
+            return;
 		}
 		if (showedScreens.Count == 0)
 		{
-			//para cuando se vincule todo con escape
-			return;
+            //para cuando se vincule todo con escape
+            iconsScreen.PlayReverse();
+            return;
 		}
 		ScreenType type = showedScreens.Pop();
 		screens[(int)type].SetActive(true);

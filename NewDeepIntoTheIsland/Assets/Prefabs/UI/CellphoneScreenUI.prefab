@@ -1180,7 +1180,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25c35b604a75f92479560006c5422894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screens: []
+  screens:
+  - {fileID: 1517734088166748}
+  - {fileID: 1093836282926760}
+  - {fileID: 1235469029991676}
   taskScreen: {fileID: 1235469029991676}
   debug: 0
 --- !u!114 &114008697842034520

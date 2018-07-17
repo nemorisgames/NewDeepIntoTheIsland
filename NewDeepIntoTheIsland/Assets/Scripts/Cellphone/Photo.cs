@@ -5,11 +5,11 @@ using System.Collections;
 public class Photo : MonoBehaviour
 {
 	public int pos = 0;
-	public Color higlighted;
-	public Color unHiglighted;
-	public Image highlight;
-	public RawImage texture;
-	public GameObject selected;
+	//public Color higlighted;
+	//public Color unHiglighted;
+	public TweenColor highlight;
+	public UITexture texture;
+	//public GameObject selected;
 	[SerializeField]
 	float selectedPos = -32f;
 	[SerializeField]
@@ -22,13 +22,15 @@ public class Photo : MonoBehaviour
 	public void Highlight()
 	{
 		transform.localPosition = new Vector3(transform.localPosition.x, selectedPos, 0);
-		selected.SetActive(true);
-		highlight.color = higlighted;
+        //selected.SetActive(true);
+        //highlight.color = higlighted;
+        highlight.PlayForward();
 	}
 	public void UnHighlight()
 	{
-		selected.SetActive(false);
+		//selected.SetActive(false);
 		transform.localPosition = new Vector3(transform.localPosition.x, UnSelectedPos, 0);
-		highlight.color = unHiglighted;
-	}
+        //highlight.color = unHiglighted;
+        highlight.PlayReverse();
+    }
 }

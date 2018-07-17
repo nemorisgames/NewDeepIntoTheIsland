@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 public class ViewPages : MonoBehaviour
 {
-	public RawImage image;
-	public GameObject noPages;
+	public UITexture image;
+	public TweenAlpha noPages;
 	private int currentPage = 0;
 	private int pagesCount = 1;
 	private List<Texture2D> pages;
@@ -67,7 +67,8 @@ public class ViewPages : MonoBehaviour
 			pages.Add(new Texture2D(500, 500));
 		}
 		currentPage = 0;
-		noPages.SetActive(false);
+        //noPages.SetActive(false);
+        noPages.PlayReverse();
         print("load pages");
 	}
 	void ShowPage(int pos = -1)
@@ -77,9 +78,11 @@ public class ViewPages : MonoBehaviour
 			currentPage = pos;
 		}
         if (pages != null && pages.Count > 0)
-            image.texture = pages[currentPage];
+        {
+            image.mainTexture = pages[currentPage];
+        }
         else
-            noPages.SetActive(true);
+            noPages.PlayForward();
         //image.color = pages[currentPage].;
         //show currentPage		
         print("show pages");

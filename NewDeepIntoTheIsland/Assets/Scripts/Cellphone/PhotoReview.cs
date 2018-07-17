@@ -12,7 +12,7 @@ public class PhotoReview : MonoBehaviour
 	[SerializeField]
 	GameObject photoGameObject;
 	[SerializeField]
-	RawImage photo;
+	UITexture photo;
 	[SerializeField]
 	GameObject noPhoto;
 	[SerializeField]
@@ -23,11 +23,11 @@ public class PhotoReview : MonoBehaviour
 	GameObject scrollRect;
 	[SerializeField]
 	GameObject photoPrefab;
-
+    /*
 	[SerializeField]
 	float normal;
 	[SerializeField]
-	float startX;
+	float startX;*/
 	[SerializeField]
 	float distance;
 
@@ -39,8 +39,8 @@ public class PhotoReview : MonoBehaviour
 
 	void OnEnable()
 	{
-		//this screen has been activated, show/load taken images
-		//LoadPhotos();
+        //this screen has been activated, show/load taken images
+        //LoadPhotos();
 	}
 	void OnDisable()
 	{
@@ -82,7 +82,8 @@ public class PhotoReview : MonoBehaviour
 		Texture2D texture = null;
 		byte[] fileData;
 		string path = "";
-		float startPos = startX;
+        print(distance);
+        float startPos = 0f;
 		float size = 0;
 		int pos = 0;
 		for (int i = 0; i < photoNumber; i++)
@@ -100,13 +101,13 @@ public class PhotoReview : MonoBehaviour
 				GameObject p = GameObject.Instantiate(photoPrefab, allPhotosGrid.transform) as GameObject;
 				p.transform.SetAsLastSibling();
 				p.transform.localScale = new Vector3(1, 1, 1);
-				p.transform.localPosition = new Vector3(startPos, normal, 1);
-				startPos = p.transform.localPosition.x + p.GetComponent<RectTransform>().sizeDelta.x + distance;
-				//Debug.Log(startPos);
-				size += p.GetComponent<RectTransform>().sizeDelta.x + distance;
-				Photo pc = p.GetComponent<Photo>();
+                startPos = p.transform.localPosition.x + distance * pos;
+                p.transform.localPosition = new Vector3(startPos, 0f, 1f);
+                //startPos = p.transform.localPosition.x + p.GetComponent<RectTransform>().sizeDelta.x + distance;
+                //size += p.GetComponent<RectTransform>().sizeDelta.x + distance;
+                Photo pc = p.GetComponent<Photo>();
 				pc.pos = pos;
-				pc.texture.texture = texture;
+				pc.texture.mainTexture = texture;
 				scrollPhotos.Add(pc);
                 pos++;
             }
@@ -116,7 +117,7 @@ public class PhotoReview : MonoBehaviour
 				isDirty = true;
 			}
 		}
-		allPhotosGrid.GetComponent<RectTransform>().sizeDelta = new Vector2(size, 150);
+		//allPhotosGrid.GetComponent<RectTransform>().sizeDelta = new Vector2(size, 150);
 		if (photosTaken.Count > 0)
 		{
 			noPhoto.SetActive(false);
@@ -131,6 +132,7 @@ public class PhotoReview : MonoBehaviour
 	}
 	public void ShowPhoto(int pos)
 	{
+        if (photosTaken.Count <= 0) return;
 		if (pos < 0)
 		{
 			pos = 0;
@@ -140,25 +142,22 @@ public class PhotoReview : MonoBehaviour
         {
             pos = photosTaken.Count - 1;
         }
-		//photo.texture=photosTaken[i];
-		photo.texture = photosTaken[pos];
+		photo.mainTexture = photosTaken[pos];
 		for (int i = 0; i < scrollPhotos.Count; i++)
 		{
 			scrollPhotos[i].UnHighlight();
 		}
 		scrollPhotos[pos].Highlight();
 		currentPhoto = pos;
-		//allPhotosGrid.transform.position = new Vector3(-scrollPhotos[pos].transform.position.x, allPhotosGrid.transform.position.y, 0);
 		SnapTo(scrollPhotos[pos].GetComponent<RectTransform>());
 	}
 	public void SnapTo(RectTransform target)
 	{
 		float offset = 115;
 		Canvas.ForceUpdateCanvases();
-		Vector2 result = (Vector2)scrollRect.transform.InverseTransformPoint(allPhotosGrid.transform.position)
-			- (Vector2)scrollRect.transform.InverseTransformPoint(target.position)+new Vector2(offset,0);
-		result.y = 75f;
-		allPhotosGrid.GetComponent<RectTransform>().anchoredPosition = result;
+        //Vector2 result = (Vector2)scrollRect.transform.InverseTransformPoint(allPhotosGrid.transform.position) - (Vector2)scrollRect.transform.InverseTransformPoint(target.position)+new Vector2(offset,0);
+        //result.y = 75f;
+		//allPhotosGrid.GetComponent<RectTransform>().anchoredPosition = result;
 
 	}
 	public void ShowConfirmationPopup()
@@ -177,14 +176,10 @@ public class PhotoReview : MonoBehaviour
 	public void DeletePhoto()
 	{
 		photosTaken.RemoveAt(currentPhoto);
-		//new
 		if (File.Exists(photosTakenPath[currentPhoto]))
 		{
-			//Debug.Log("deleting at: " + photosTakenPath[currentPhoto] + " current Photo: " + currentPhoto);
 			File.Delete(photosTakenPath[currentPhoto]);
 		}
-		//FileUtil.DeleteFileOrDirectory(photosTakenPath[currentPhoto]);
-		//Debug.Log("Deleted photo");
 		photosTakenPath.RemoveAt(currentPhoto);
 		Destroy(scrollPhotos[currentPhoto].gameObject);
 		scrollPhotos.RemoveAt(currentPhoto);
@@ -199,7 +194,6 @@ public class PhotoReview : MonoBehaviour
 		for (int i = 0; i < photosTaken.Count; i++)
 		{
 			temp = path + i + ".png";
-			//Debug.Log("Renaming: " + temp);
 			if (File.Exists(temp))
 			{
 				File.Delete(temp);
@@ -207,7 +201,6 @@ public class PhotoReview : MonoBehaviour
 			byte[] bytes;
 			bytes = photosTaken[i].EncodeToPNG();
 			File.WriteAllBytes(temp, bytes);
-			//FileUtil.MoveFileOrDirectory(photosTakenPath[i], path + i + ".png");
 		}
 		PlayerPrefs.SetInt("PhotoNumber", photosTaken.Count);
 		PlayerPrefs.Save();
@@ -244,9 +237,9 @@ public class PhotoReview : MonoBehaviour
 				LastPhoto();
 			}
 		}
-		if (Input.GetButtonDown("Fire2"))
+		/*if (Input.GetButtonDown("Fire2"))
 		{
 			ScreenManager.Instance.CloseScreen();
-		}
+		}*/
 	}
 }

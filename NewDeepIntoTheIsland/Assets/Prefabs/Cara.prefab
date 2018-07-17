@@ -357,7 +357,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4293003031
+    m_Bits: 4293003063
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1579,7 +1579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c79b8dd5ff9e84fb6c162a28f67f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowHUD: 1
+  ShowHUD: 0
   BigFont: {fileID: 12800000, guid: 4721e7a71e3620b4dac13fdc767ee80a, type: 3}
   SmallFont: {fileID: 12800000, guid: 4721e7a71e3620b4dac13fdc767ee80a, type: 3}
   MessageFont: {fileID: 12800000, guid: 4721e7a71e3620b4dac13fdc767ee80a, type: 3}
