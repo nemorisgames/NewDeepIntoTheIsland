@@ -82,7 +82,6 @@ public class PhotoReview : MonoBehaviour
 		Texture2D texture = null;
 		byte[] fileData;
 		string path = "";
-        print(distance);
         float startPos = 0f;
 		float size = 0;
 		int pos = 0;
@@ -146,7 +145,8 @@ public class PhotoReview : MonoBehaviour
 		for (int i = 0; i < scrollPhotos.Count; i++)
 		{
 			scrollPhotos[i].UnHighlight();
-		}
+            scrollPhotos[i].transform.localPosition = new Vector3((i - pos) * distance + 228f, 0f, 0f);
+        }
 		scrollPhotos[pos].Highlight();
 		currentPhoto = pos;
 		SnapTo(scrollPhotos[pos].GetComponent<RectTransform>());
@@ -154,7 +154,7 @@ public class PhotoReview : MonoBehaviour
 	public void SnapTo(RectTransform target)
 	{
 		float offset = 115;
-		Canvas.ForceUpdateCanvases();
+		//Canvas.ForceUpdateCanvases();
         //Vector2 result = (Vector2)scrollRect.transform.InverseTransformPoint(allPhotosGrid.transform.position) - (Vector2)scrollRect.transform.InverseTransformPoint(target.position)+new Vector2(offset,0);
         //result.y = 75f;
 		//allPhotosGrid.GetComponent<RectTransform>().anchoredPosition = result;
@@ -228,11 +228,11 @@ public class PhotoReview : MonoBehaviour
 	{
 		if (Input.GetAxis("Mouse ScrollWheel") != 0f)
 		{
-			if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+			if (Input.GetAxis("Mouse ScrollWheel") > 0f)
 			{
 				NextPhoto();
 			}
-			if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+			if (Input.GetAxis("Mouse ScrollWheel") < 0f)
 			{
 				LastPhoto();
 			}

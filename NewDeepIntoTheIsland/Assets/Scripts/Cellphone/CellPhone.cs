@@ -15,6 +15,7 @@ public class CellPhone : MonoBehaviour
 	bool phoneUp = false;
 	public Light light;
 	public Light lightStandBy;
+    public GameObject lightOnText;
 	bool bringingPhoneUp = false;
 	public bool active = false;
 
@@ -23,12 +24,22 @@ public class CellPhone : MonoBehaviour
 	//public GameObject[] selectors;
 	//public Color phoneUpColor;
 	//public Color unphoneUpColor;
-	public enum CellphoneFunctions { Light, CameraPhoto, ReviewPhotos, Call};
+	public enum CellphoneFunctions { Menu, Light, CameraPhoto, ReviewPhotos, Call};
 	public CellphoneFunctions currentFunction = CellphoneFunctions.Light;
     
 	int indiceActual = 0;
 
-	[Header("ForScreenShots")]
+    [Header("Battery")]
+    public TweenScale batteryBar;
+    float initialWidth;
+    float batteryTimeDuration = 60f;
+    float batteryLightDuration = 30f;
+    float batteryCameraDuration = 10f;
+    public UILabel batteryPercentage;
+    public GameObject noBattery;
+    bool batteryDepleded = false;
+
+    [Header("ForScreenShots")]
 	public TakePhoto photoFunctionality;
 	private bool isSavingPhoto = false;
 	private bool canUseMouseScroll = true;
@@ -62,6 +73,8 @@ public class CellPhone : MonoBehaviour
         phoneRenderers = GetComponentsInChildren<MeshRenderer>();
         handRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
         showHandAndPhone(false);
+        batteryBar.PlayForward();
+        ChangeBatteryDuration(CellphoneFunctions.Menu);
     }
 	void Awake()
 	{
@@ -70,7 +83,7 @@ public class CellPhone : MonoBehaviour
 		defaultSpotAngle = light.spotAngle;
 		defaultLightEnabled = light.enabled;
 		Instance = this;
-	}
+    }
 
     void showHandAndPhone(bool show)
     {
@@ -99,104 +112,41 @@ public class CellPhone : MonoBehaviour
 		this.active = active;
 		cellphoneBody.SetActive(active);
     }
-	void LateUpdate()
-	{
 
-		if (!phoneUp)
-		{
-			if (target != null)
-			{
-				Vector3 tVec = new Vector3(target.position.x, target.position.y, target.position.z) + target.right * position.x + target.forward * position.z + target.up * position.y;
-				transform.position = Vector3.Lerp(transform.position, tVec, Time.deltaTime * speed);
-				transform.forward = Vector3.Lerp(transform.forward, target.forward, Time.deltaTime * speedRotation);
-			}
-		}
-		else
-		{
-			if (transform.parent != target)
-			{
-				Vector3 tVec = new Vector3(target.position.x, target.position.y, target.position.z) + target.right * positionSelected.x + target.forward * positionSelected.z + target.up * positionSelected.y;
-				transform.position = Vector3.Lerp(transform.position, tVec, Time.deltaTime * speed * 5f);
-				transform.forward = Vector3.Lerp(transform.forward, target.forward, Time.deltaTime * speedRotation * 10f);
-			}
-		}
+    private void Update()
+    {
+        batteryPercentage.text = Mathf.FloorToInt(batteryBar.value.x / 1f * 100f) + "%";
+    }
 
-		//Checkout on cellphone
-		if (Input.GetButtonDown("Fire2"))
-		{
-            if (ScreenManager.showingScreen)
-            {
-                ScreenManager.Instance.CloseScreen();
-            }
-            else
-            {
-                if (!bringingPhoneUp)
-                {
-                    print("showing screen " + ScreenManager.showingScreen);
-                    phoneUp = !phoneUp;
-                    if (phoneUp)
-                    {
-                        StartCoroutine(PhoneUpAnimatedTransition());
-                        ShowNotificationIfActive();
-                    }
-                    else
-                    {
-                        ResetToDefaults();
-                        transform.parent = null;
-                    }
-                    depthOfField.active = !phoneUp;
-                    motionBlur.active = !phoneUp;
-                    showHandAndPhone(phoneUp);
-                    ScreenManager.Instance.CloseScreen();
-                }
-            }
+    void ChangeBatteryDuration(CellphoneFunctions c)
+    {
+        switch (c)
+        {
+            case CellphoneFunctions.CameraPhoto:
+                batteryBar.duration = batteryCameraDuration;
+                break;
+            case CellphoneFunctions.Light:
+                batteryBar.duration = batteryLightDuration;
+                break;
+            default:
+                if (light.enabled) ChangeBatteryDuration(CellphoneFunctions.Light);
+                else batteryBar.duration = batteryTimeDuration;
+                break;
         }
+    }
 
-        if (!active || ScreenManager.paused)
-            return;
-
-        if (Input.GetAxis("Mouse ScrollWheel") != 0f && canUseMouseScroll && phoneUp)
-		{
-			if (Input.GetAxis("Mouse ScrollWheel") > 0f)
-			{
-				nextFunction(true);
-			}
-			if (Input.GetAxis("Mouse ScrollWheel") < 0f)
-			{
-				nextFunction(false);
-			}
-		}
-
-		//Cellphone function
-		if (Input.GetButtonDown("Fire1") && phoneUp)
-		{
-			switch (currentFunction)
-			{
-				case CellphoneFunctions.Light:
-					turnLight(!light.enabled);
-					break;
-				case CellphoneFunctions.CameraPhoto:
-					prepareTakePhoto();
-					break;
-				case CellphoneFunctions.ReviewPhotos:
-					ScreenManager.Instance.ShowScreen(ScreenType.PhotoView);
-					canUseMouseScroll = false;
-					break;
-                case CellphoneFunctions.Call:
-                    ScreenManager.Instance.ShowScreen(ScreenType.Call);
-                    break;
-            }
-        }
-		//SetFunctionColors((int)currentFunction);
-	}
-
-	void turnLight(bool lightOn)
+    void turnLight(bool lightOn)
 	{
 		light.enabled = lightOn;
 		Light s = light.transform.Find("SupportLight").GetComponent<Light>();
 		s.enabled = lightOn;
-		//AC.GlobalVariables.SetBooleanValue(0, lightOn);
-	}
+        if (lightOn)
+            ChangeBatteryDuration(CellphoneFunctions.Light);
+        else
+            ChangeBatteryDuration(CellphoneFunctions.Menu);
+        lightOnText.SetActive(lightOn);
+        //AC.GlobalVariables.SetBooleanValue(0, lightOn);
+    }
 
 	void prepareTakePhoto()
 	{
@@ -344,4 +294,120 @@ public class CellPhone : MonoBehaviour
 	{
 		canUseMouseScroll = canUse;
 	}
+
+    public void BatteryDepleded()
+    {
+        if (!batteryDepleded)
+        {
+            batteryDepleded = true;
+            batteryBar.transform.parent.gameObject.SetActive(false);
+            noBattery.SetActive(true);
+            ScreenManager.Instance.CloseScreen();
+            ChangeBatteryDuration(CellphoneFunctions.Menu);
+            turnLight(false);
+        }
+    }
+
+    void LateUpdate()
+    {
+
+        if (!phoneUp)
+        {
+            if (target != null)
+            {
+                Vector3 tVec = new Vector3(target.position.x, target.position.y, target.position.z) + target.right * position.x + target.forward * position.z + target.up * position.y;
+                transform.position = Vector3.Lerp(transform.position, tVec, Time.deltaTime * speed);
+                transform.forward = Vector3.Lerp(transform.forward, target.forward, Time.deltaTime * speedRotation);
+            }
+        }
+        else
+        {
+            if (transform.parent != target)
+            {
+                Vector3 tVec = new Vector3(target.position.x, target.position.y, target.position.z) + target.right * positionSelected.x + target.forward * positionSelected.z + target.up * positionSelected.y;
+                transform.position = Vector3.Lerp(transform.position, tVec, Time.deltaTime * speed * 5f);
+                transform.forward = Vector3.Lerp(transform.forward, target.forward, Time.deltaTime * speedRotation * 10f);
+            }
+        }
+
+        //Checkout on cellphone or go back
+        if (Input.GetButtonDown("Fire2"))
+        {
+            if (ScreenManager.showingScreen)
+            {
+                ScreenManager.Instance.CloseScreen();
+                ChangeBatteryDuration(CellphoneFunctions.Menu);
+            }
+            else
+            {
+                if (!bringingPhoneUp)
+                {
+                    print("showing screen " + ScreenManager.showingScreen);
+                    phoneUp = !phoneUp;
+                    if (phoneUp)
+                    {
+                        StartCoroutine(PhoneUpAnimatedTransition());
+                        ShowNotificationIfActive();
+                    }
+                    else
+                    {
+                        if (currentFunction == CellphoneFunctions.Menu)
+                        {
+                            ChangeBatteryDuration(CellphoneFunctions.Menu);
+                            ResetToDefaults();
+                            transform.parent = null;
+                        }
+                    }
+                    depthOfField.active = !phoneUp;
+                    motionBlur.active = !phoneUp;
+                    showHandAndPhone(phoneUp);
+                    ScreenManager.Instance.CloseScreen();
+                }
+            }
+        }
+
+        if (!active || ScreenManager.paused)
+            return;
+
+        if (Input.GetAxis("Mouse ScrollWheel") != 0f && canUseMouseScroll && phoneUp)
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+            {
+                nextFunction(true);
+            }
+            if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+            {
+                nextFunction(false);
+            }
+        }
+
+        //Cellphone function
+        if (Input.GetButtonDown("Fire1") && phoneUp && !batteryDepleded)
+        {
+            switch (currentFunction)
+            {
+                case CellphoneFunctions.Light:
+                    turnLight(!light.enabled);
+                    break;
+                case CellphoneFunctions.CameraPhoto:
+                    if (ScreenManager.Instance.GetCurrentType() != ScreenType.Camera)
+                    {
+                        ScreenManager.Instance.ShowScreen(ScreenType.Camera);
+                        ChangeBatteryDuration(CellphoneFunctions.CameraPhoto);
+                    }
+                    else
+                        prepareTakePhoto();
+                    break;
+                case CellphoneFunctions.ReviewPhotos:
+                    ScreenManager.Instance.ShowScreen(ScreenType.PhotoView);
+                    ChangeBatteryDuration(CellphoneFunctions.ReviewPhotos);
+                    canUseMouseScroll = false;
+                    break;
+                case CellphoneFunctions.Call:
+                    ScreenManager.Instance.ShowScreen(ScreenType.Call);
+                    ChangeBatteryDuration(CellphoneFunctions.Call);
+                    break;
+            }
+        }
+    }
 }

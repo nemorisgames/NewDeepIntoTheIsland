@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 public enum ScreenType
 {
+    Menu,
+    Camera,
 	PhotoView,
 	BookView,
 	ItemView,
@@ -14,7 +16,9 @@ public enum ScreenType
 public class ScreenManager : MonoBehaviour
 {
 	public static ScreenManager Instance = null;
-	[SerializeField]
+    [SerializeField]
+    GameObject menuScreen;
+    [SerializeField]
 	GameObject[] screens;
 	[SerializeField]
 	GameObject taskScreen;
@@ -60,6 +64,13 @@ public class ScreenManager : MonoBehaviour
         taskScreen.SetActive(true);
         showingScreen = true;
     }
+
+    public ScreenType GetCurrentType()
+    {
+        if (showedScreens == null || showedScreens.Count == 0) return ScreenType.Menu;
+        return showedScreens.Peek();
+    }
+
 	public void ShowScreen(ScreenType type)
 	{
         int index = 0;
@@ -98,21 +109,34 @@ public class ScreenManager : MonoBehaviour
 		//any aditional setups
 		switch (type)
 		{
+            case ScreenType.Camera:
+                menuScreen.SetActive(false);
+                break;
 			case ScreenType.PhotoView:
 				screens[index].GetComponent<PhotoReview>().LoadPhotos();
+                menuScreen.SetActive(false);
 				break;
 			case ScreenType.BookView:
 				screens[index].GetComponent<ViewPages>().Load();
 				break;
             case ScreenType.Call:
                 screens[index].GetComponent<Call>().CheckSignal();
+                menuScreen.SetActive(false);
                 break;
             default:
 				break;
 		}
 		showedScreens.Push(type);
-		PauseGame();
-		screens[index].SetActive(true);
+
+        if (type == ScreenType.Camera)
+        {
+            menuScreen.SetActive(false);
+        }
+        else
+        {
+            PauseGame();
+            screens[index].SetActive(true);
+        }
         showingScreen = true;
     }
 	public void CloseAllScreens()
@@ -130,6 +154,8 @@ public class ScreenManager : MonoBehaviour
 			ResumeGame();
 			showedScreens.Clear();
             showingScreen = false;
+            if (!menuScreen.activeSelf)
+                menuScreen.SetActive(true);
             iconsScreen.PlayReverse();
             return;
 		}
