@@ -8,7 +8,7 @@ public enum ScreenType
 	BookView,
 	ItemView,
 	Options,
-    Call,
+    Message,
 	Save,
 	Load,
 	Quit,
@@ -26,17 +26,14 @@ public class ScreenManager : MonoBehaviour
     TweenAlpha iconsScreen;
     [SerializeField]
 	bool debug = false;
-	//[SerializeField]
-	//AC.Cutscene pauseGame;
-	//[SerializeField]
-	//AC.Cutscene unPauseGame;
-	public static bool paused = false;
     public static bool showingScreen = false;
 	private Stack<ScreenType> showedScreens = new Stack<ScreenType>();
+    vp_FPInput inputUFPS;
+
 	void Start()
 	{
-
-	}
+        inputUFPS = GameManager.instance.playerInput;
+    }
 	void Awake()
 	{
 		Instance = this;
@@ -76,7 +73,7 @@ public class ScreenManager : MonoBehaviour
         int index = 0;
         for(int i = 0; i < screens.Length; i++)
         {
-            if (type == ScreenType.Call && screens[i].GetComponent<Call>() != null)
+            if (type == ScreenType.Message && screens[i].GetComponent<MessageReview>() != null)
             {
                 index = i;
                 break;
@@ -119,8 +116,8 @@ public class ScreenManager : MonoBehaviour
 			case ScreenType.BookView:
 				screens[index].GetComponent<ViewPages>().Load();
 				break;
-            case ScreenType.Call:
-                screens[index].GetComponent<Call>().CheckSignal();
+            case ScreenType.Message:
+                screens[index].GetComponent<MessageReview>().CheckMessages();
                 menuScreen.SetActive(false);
                 break;
             default:
@@ -180,19 +177,25 @@ public class ScreenManager : MonoBehaviour
 	}
 	public void PauseGame()
 	{
-		paused = true;
+        GameManager.instance.gameStatus = GameManager.GameStatus.Paused;
+		//paused = true;
 		//pauseGame.Interact();
 		if (CellPhone.Instance)
 			CellPhone.Instance.CanUseScroller(false);
 		vp_TimeUtility.Paused = (true);
-		vp_Utility.LockCursor = false;
-	}
+        //vp_Utility.LockCursor = false;
+        inputUFPS.MouseCursorForced = true;
+
+
+    }
 	public void ResumeGame()
-	{
-		paused = false;
+    {
+        GameManager.instance.gameStatus = GameManager.GameStatus.Normal;
+        //paused = false;
 		//unPauseGame.Interact();
-		vp_Utility.LockCursor = true;
-		vp_TimeUtility.Paused = (false);
+		//vp_Utility.LockCursor = true;
+        inputUFPS.MouseCursorForced = false;
+        vp_TimeUtility.Paused = (false);
 		if (CellPhone.Instance)
 			CellPhone.Instance.CanUseScroller(true);
 	}

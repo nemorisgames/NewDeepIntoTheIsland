@@ -24,7 +24,7 @@ public class CellPhone : MonoBehaviour
 	//public GameObject[] selectors;
 	//public Color phoneUpColor;
 	//public Color unphoneUpColor;
-	public enum CellphoneFunctions { Menu, Light, CameraPhoto, ReviewPhotos, Call};
+	public enum CellphoneFunctions { Menu, Light, CameraPhoto, ReviewPhotos, Message};
 	public CellphoneFunctions currentFunction = CellphoneFunctions.Light;
     
 	int indiceActual = 0;
@@ -32,12 +32,11 @@ public class CellPhone : MonoBehaviour
     [Header("Battery")]
     public TweenScale batteryBar;
     float initialWidth;
-    float batteryTimeDuration = 60f;
-    float batteryLightDuration = 30f;
-    float batteryCameraDuration = 10f;
+    float batteryTimeDuration = 600f;
+    float batteryLightDuration = 500f;
+    float batteryCameraDuration = 200f;
     public UILabel batteryPercentage;
     public GameObject noBattery;
-    bool batteryDepleded = false;
 
     [Header("ForScreenShots")]
 	public TakePhoto photoFunctionality;
@@ -50,7 +49,7 @@ public class CellPhone : MonoBehaviour
 	public AudioClip photoSound;
 	public AudioSource source;
 	private float timeOut = 0;
-	private bool showingNotification = false;
+	//private bool showingNotification = false;
 	private int maxNotification = 5;
 	private int currentNotifications = 0;
 	float defaultSpotAngle = 0;
@@ -116,6 +115,7 @@ public class CellPhone : MonoBehaviour
     private void Update()
     {
         batteryPercentage.text = Mathf.FloorToInt(batteryBar.value.x / 1f * 100f) + "%";
+        if (Input.GetKeyDown(KeyCode.T)) ShowNotification("texto de mensaje");
     }
 
     void ChangeBatteryDuration(CellphoneFunctions c)
@@ -137,7 +137,8 @@ public class CellPhone : MonoBehaviour
 
     void turnLight(bool lightOn)
 	{
-		light.enabled = lightOn;
+        GameManager.instance.lightActivated = lightOn;
+        light.enabled = lightOn;
 		Light s = light.transform.Find("SupportLight").GetComponent<Light>();
 		s.enabled = lightOn;
         if (lightOn)
@@ -233,7 +234,7 @@ public class CellPhone : MonoBehaviour
 			case 0: currentFunction = CellphoneFunctions.Light; break;
 			case 1: currentFunction = CellphoneFunctions.CameraPhoto; break;
 			case 2: currentFunction = CellphoneFunctions.ReviewPhotos; break;
-			case 3: currentFunction = CellphoneFunctions.Call; break;
+			case 3: currentFunction = CellphoneFunctions.Message; break;
 		}
 	}
 	IEnumerator PhoneUpAnimatedTransition()
@@ -247,6 +248,7 @@ public class CellPhone : MonoBehaviour
 		transform.rotation = target.rotation;
 		bringingPhoneUp = false;
 	}
+    /*
 	void ShowNotificationIfActive()
 	{
 		if (showingNotification)
@@ -256,15 +258,18 @@ public class CellPhone : MonoBehaviour
 			showingNotification = false;
 			CancelInvoke("NotificationSound");
 		}
-	}
-	void ShowNotification()
+	}*/
+
+	void ShowNotification(string message)
 	{
-		if (!showingNotification)
-		{
+		//if (!showingNotification)
+		//{
+            MessageReview.instance.AddMessage(message);
 			currentNotifications = 0;
-			showingNotification = true; //can be used to close notification when she shows the cell phone
-			InvokeRepeating("NotificationSound", 0f, 1.5f);
-		}
+			//showingNotification = true; //can be used to close notification when she shows the cell phone
+			//InvokeRepeating("NotificationSound", 0f, 1.5f);
+            NotificationSound();
+        //}
 	}
 	void NotificationSound()
 	{
@@ -274,7 +279,7 @@ public class CellPhone : MonoBehaviour
 		source.Play();
 		if (currentNotifications >= maxNotification)
 		{
-			showingNotification = false;
+			//showingNotification = false;
 			CancelInvoke("NotificationSound");
 			return;
 		}
@@ -286,7 +291,7 @@ public class CellPhone : MonoBehaviour
 		if (Time.time - timeOut >= 5f)
 		{
 			timeOut = 0;
-			CancelInvoke("NotificaionDuration");
+			CancelInvoke("NotificationDuration");
 			notification.SetActive(false);
 		}
 	}
@@ -297,9 +302,9 @@ public class CellPhone : MonoBehaviour
 
     public void BatteryDepleded()
     {
-        if (!batteryDepleded)
+        if (!GameManager.instance.batteryDepleded)
         {
-            batteryDepleded = true;
+            GameManager.instance.batteryDepleded = true;
             batteryBar.transform.parent.gameObject.SetActive(false);
             noBattery.SetActive(true);
             ScreenManager.Instance.CloseScreen();
@@ -307,7 +312,7 @@ public class CellPhone : MonoBehaviour
             turnLight(false);
         }
     }
-
+    
     void LateUpdate()
     {
 
@@ -333,6 +338,7 @@ public class CellPhone : MonoBehaviour
         //Checkout on cellphone or go back
         if (Input.GetButtonDown("Fire2"))
         {
+            
             if (ScreenManager.showingScreen)
             {
                 ScreenManager.Instance.CloseScreen();
@@ -342,12 +348,11 @@ public class CellPhone : MonoBehaviour
             {
                 if (!bringingPhoneUp)
                 {
-                    print("showing screen " + ScreenManager.showingScreen);
                     phoneUp = !phoneUp;
                     if (phoneUp)
                     {
                         StartCoroutine(PhoneUpAnimatedTransition());
-                        ShowNotificationIfActive();
+                        //ShowNotificationIfActive();
                     }
                     else
                     {
@@ -366,7 +371,7 @@ public class CellPhone : MonoBehaviour
             }
         }
 
-        if (!active || ScreenManager.paused)
+        if (!active || GameManager.instance.gameStatus == GameManager.GameStatus.Paused)
             return;
 
         if (Input.GetAxis("Mouse ScrollWheel") != 0f && canUseMouseScroll && phoneUp)
@@ -382,7 +387,7 @@ public class CellPhone : MonoBehaviour
         }
 
         //Cellphone function
-        if (Input.GetButtonDown("Fire1") && phoneUp && !batteryDepleded)
+        if (Input.GetButtonDown("Fire1") && phoneUp && !GameManager.instance.batteryDepleded)
         {
             switch (currentFunction)
             {
@@ -403,9 +408,9 @@ public class CellPhone : MonoBehaviour
                     ChangeBatteryDuration(CellphoneFunctions.ReviewPhotos);
                     canUseMouseScroll = false;
                     break;
-                case CellphoneFunctions.Call:
-                    ScreenManager.Instance.ShowScreen(ScreenType.Call);
-                    ChangeBatteryDuration(CellphoneFunctions.Call);
+                case CellphoneFunctions.Message:
+                    ScreenManager.Instance.ShowScreen(ScreenType.Message);
+                    ChangeBatteryDuration(CellphoneFunctions.Message);
                     break;
             }
         }

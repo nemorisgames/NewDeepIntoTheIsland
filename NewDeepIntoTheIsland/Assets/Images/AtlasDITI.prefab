@@ -66,8 +66,21 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: Circle
+    x: 172
+    y: 78
+    width: 50
+    height: 50
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: menu_gallery
-    x: 94
+    x: 106
     y: 19
     width: 47
     height: 43
@@ -92,8 +105,21 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: menu_message
+    x: 0
+    y: 31
+    width: 64
+    height: 51
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: menu_phone
-    x: 54
+    x: 66
     y: 26
     width: 38
     height: 56
@@ -106,8 +132,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: menu_photo
-    x: 0
-    y: 40
+    x: 172
+    y: 34
     width: 52
     height: 42
     borderLeft: 0
@@ -119,8 +145,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: WhiteSquare
-    x: 94
-    y: 76
+    x: 155
+    y: 56
     width: 6
     height: 6
     borderLeft: 1
