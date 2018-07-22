@@ -12,7 +12,7 @@ public class CellPhone : MonoBehaviour
 	public float speedRotation = 1f;
 	public Vector3 position;
 	public Vector3 positionSelected;
-	bool phoneUp = false;
+	public static bool phoneUp = false;
 	public Light light;
 	public Light lightStandBy;
     public GameObject lightOnText;

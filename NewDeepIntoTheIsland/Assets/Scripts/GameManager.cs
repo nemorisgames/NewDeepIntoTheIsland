@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour {
     public PostProcessVolume postProcessVolume;
     ColorGrading colorGrading;
     Vector2 exposureRange = new Vector2(-1f, 1.95f);
+    public delegate void AudioTransformsUpdater(Transform root, Transform eye);
+    public AudioTransformsUpdater audioTransformsUpdater;
 
     private void Awake()
     {
@@ -40,7 +42,10 @@ public class GameManager : MonoBehaviour {
             }
         }
         postProcessVolume.profile.TryGetSettings(out colorGrading);
-        playerInput = GameObject.FindWithTag("Player").GetComponent<vp_FPInput>();
+        GameObject player = GameObject.FindWithTag("Player");
+        playerInput = player.GetComponent<vp_FPInput>();
+        if (audioTransformsUpdater != null)
+            audioTransformsUpdater(player.transform, Camera.main.transform);
     }
 
     // Update is called once per frame
