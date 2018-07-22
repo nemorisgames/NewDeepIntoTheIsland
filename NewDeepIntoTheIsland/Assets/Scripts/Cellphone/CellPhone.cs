@@ -112,12 +112,6 @@ public class CellPhone : MonoBehaviour
 		cellphoneBody.SetActive(active);
     }
 
-    private void Update()
-    {
-        batteryPercentage.text = Mathf.FloorToInt(batteryBar.value.x / 1f * 100f) + "%";
-        if (Input.GetKeyDown(KeyCode.T)) ShowNotification("texto de mensaje");
-    }
-
     void ChangeBatteryDuration(CellphoneFunctions c)
     {
         switch (c)
@@ -312,7 +306,18 @@ public class CellPhone : MonoBehaviour
             turnLight(false);
         }
     }
-    
+
+    private void Update()
+    {
+        batteryPercentage.text = Mathf.FloorToInt(batteryBar.value.x / 1f * 100f) + "%";
+        //if (Input.GetKeyDown(KeyCode.T)) ShowNotification("texto de mensaje");
+        /*if (Input.GetKeyDown(KeyCode.R)) WeatherManager.Instance.StartNewWeather(Weather.RainNone);
+        if (Input.GetKeyDown(KeyCode.T)) WeatherManager.Instance.StartNewWeather(Weather.RainLow);
+        if (Input.GetKeyDown(KeyCode.F)) WeatherManager.Instance.StartNewWeather(Weather.RainNormal);
+        if (Input.GetKeyDown(KeyCode.G)) WeatherManager.Instance.StartNewWeather(Weather.RainHeavy);
+        if (Input.GetKeyDown(KeyCode.V)) WeatherManager.Instance.StartNewWeather(Weather.RainStorm);*/
+    }
+
     void LateUpdate()
     {
 
