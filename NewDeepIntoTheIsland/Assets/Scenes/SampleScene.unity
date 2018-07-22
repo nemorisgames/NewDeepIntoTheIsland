@@ -113,7 +113,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 4df763a9fae04c94bad2e061899846eb, type: 2}
 --- !u!1 &53891442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1606,6 +1606,44 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e313fe6e24f295d4ab9e95ede445e8a6, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &765443831 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1432228351997060, guid: 06c789307dc96314d8905b01748d99c0,
+    type: 2}
+  m_PrefabInternal: {fileID: 2089394824}
+--- !u!195 &765443834
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 765443831}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.5
+  m_BaseOffset: -0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &765443835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 765443831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6134f01ca38cd804abfbfbaf906776ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1365196740}
 --- !u!1001 &780916371
 Prefab:
   m_ObjectHideFlags: 0
@@ -2262,6 +2300,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1517734088166748, guid: d2daca9e4af10e74cbe6adc5ec9a35f0,
     type: 2}
   m_PrefabInternal: {fileID: 1587691281}
+--- !u!4 &1365196740 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4160544108864334, guid: dad693a8f6fb7db4d8452aa3847e107e,
+    type: 2}
+  m_PrefabInternal: {fileID: 820641370}
 --- !u!1 &1390466813 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1235469029991676, guid: d2daca9e4af10e74cbe6adc5ec9a35f0,
@@ -3450,7 +3493,7 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: f644eda5671baf944849812e36dac96a, type: 2}
+      objectReference: {fileID: 9100000, guid: 4eb84d25b3cf1104fa6406bdcdc62fb5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06c789307dc96314d8905b01748d99c0, type: 2}
   m_IsPrefabAsset: 0
