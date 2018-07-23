@@ -95,7 +95,7 @@ public class Witcher : MonoBehaviour
         }*/
         GameManager.instance.witcherStatus = w;
     }
-
+    
     void Update()
     {
         switch (GameManager.instance.witcherStatus) {
@@ -126,6 +126,14 @@ public class Witcher : MonoBehaviour
                 {
                     destination = player.position;
                     agent.destination = destination;
+                }
+                if (agent.remainingDistance < 1f)
+                {
+                    GameManager.instance.KillPlayer();
+                    agent.destination = transform.position;
+                    animator.SetFloat("InputVertical", agent.velocity.magnitude * 0.1f);
+                    ChangeStatus(GameManager.WitcherStatus.Hidden);
+                    this.enabled = false;
                 }
                 if(currentChaseTime <= Time.time)
                 {

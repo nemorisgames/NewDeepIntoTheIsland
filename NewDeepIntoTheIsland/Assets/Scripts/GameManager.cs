@@ -32,8 +32,9 @@ public class GameManager : MonoBehaviour {
 
     public enum WitcherStatus { Hidden, Watching, Chasing, Hiding };
     [Header("Witcher Settings")]
-    //[HideInInspector]
+    [HideInInspector]
     public WitcherStatus witcherStatus = WitcherStatus.Hidden;
+    public KilledByWitcher killedByWitcher;
 
     private void Awake()
     {
@@ -55,6 +56,26 @@ public class GameManager : MonoBehaviour {
             audioTransformsUpdater(player.transform, Camera.main.transform);
     }
 
+    public void KillPlayer()
+    {
+        ScreenManager.Instance.CloseScreen();
+        playerStatus = PlayerStatus.Dead;
+        playerInput.enabled = false;
+        killedByWitcher.Kill();
+        StartCoroutine(DarkenScene());
+    }
+
+    IEnumerator DarkenScene()
+    {
+        yield return new WaitForSeconds(2f);
+        for (int i = 0; i < 100; i++)
+        {
+            yield return new WaitForSeconds(0.01f);
+            colorGrading.postExposure.value -= 0.05f;
+        }
+        print("finish");
+    }
+
     // Update is called once per frame
     void Update () {
         if (playerStatus == PlayerStatus.Dead) return;
@@ -63,7 +84,7 @@ public class GameManager : MonoBehaviour {
             currentTimeUntilDarknessKill = Mathf.Clamp(currentTimeUntilDarknessKill + (lightActivated ? -1f : 1f) * Time.deltaTime, 0f, timeUntilDarknessKill);
             colorGrading.postExposure.value = (exposureRange.y - (exposureRange.y - exposureRange.x) * (currentTimeUntilDarknessKill / timeUntilDarknessKill));
         }
-        else playerStatus = PlayerStatus.Dead;
+        else KillPlayer();
     }
 }
 
