@@ -717,6 +717,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4999305683757686}
   - component: {fileID: 95029534888285576}
+  - component: {fileID: 195146003972411682}
+  - component: {fileID: 114456814962993208}
   m_Layer: 0
   m_Name: Witcher
   m_TagString: Untagged
@@ -2534,7 +2536,7 @@ Animator:
   m_GameObject: {fileID: 1432228351997060}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 98a0d20fa7e7ea54bb3cf0f0aa55d62b, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4eb84d25b3cf1104fa6406bdcdc62fb5, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2543,6 +2545,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114456814962993208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1432228351997060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6134f01ca38cd804abfbfbaf906776ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  timeHidden: 10
+  timeUntilChase: 3
+  chaseTime: 4
 --- !u!137 &137064612480156410
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2797,6 +2818,27 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000108487904, y: 0.1953013, z: 0.23696753}
     m_Extent: {x: 0.118086025, y: 0.043130636, z: 0.043322384}
   m_DirtyAABB: 0
+--- !u!195 &195146003972411682
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1432228351997060}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.5
+  m_BaseOffset: -0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!198 &198792965593695444
 ParticleSystem:
   m_ObjectHideFlags: 1

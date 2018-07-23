@@ -8,12 +8,16 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
     public enum PlayerStatus {Normal, Dead};
     public enum GameStatus { Normal, Begin, Paused, End, Menu };
+    public delegate void AudioTransformsUpdater(Transform root, Transform eye);
+    public AudioTransformsUpdater audioTransformsUpdater;
     [HideInInspector]
     public PlayerStatus playerStatus = PlayerStatus.Normal;
     [HideInInspector]
     public GameStatus gameStatus = GameStatus.Normal;
     [HideInInspector]
     public vp_FPInput playerInput;
+    [HideInInspector]
+    public GameObject player;
     [Header("Battery Settings")]
     [HideInInspector]
     public bool batteryDepleded = false;
@@ -25,8 +29,11 @@ public class GameManager : MonoBehaviour {
     public PostProcessVolume postProcessVolume;
     ColorGrading colorGrading;
     Vector2 exposureRange = new Vector2(-1f, 1.95f);
-    public delegate void AudioTransformsUpdater(Transform root, Transform eye);
-    public AudioTransformsUpdater audioTransformsUpdater;
+
+    public enum WitcherStatus { Hidden, Watching, Chasing, Hiding };
+    [Header("Witcher Settings")]
+    //[HideInInspector]
+    public WitcherStatus witcherStatus = WitcherStatus.Hidden;
 
     private void Awake()
     {
@@ -42,7 +49,7 @@ public class GameManager : MonoBehaviour {
             }
         }
         postProcessVolume.profile.TryGetSettings(out colorGrading);
-        GameObject player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("Player");
         playerInput = player.GetComponent<vp_FPInput>();
         if (audioTransformsUpdater != null)
             audioTransformsUpdater(player.transform, Camera.main.transform);
