@@ -134,6 +134,7 @@ public class ScreenManager : MonoBehaviour
             PauseGame();
             screens[index].SetActive(true);
         }
+
         showingScreen = true;
     }
 	public void CloseAllScreens()

@@ -2822,6 +2822,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraKill: {fileID: 20971905118262474}
   witcher: {fileID: 4943160222007908}
+  realWitcher: {fileID: 0}
+  witcherRightHand: {fileID: 4537049658741716}
+  witcherEyes: {fileID: 4306818643361042}
 --- !u!114 &114755898325653584
 MonoBehaviour:
   m_ObjectHideFlags: 1

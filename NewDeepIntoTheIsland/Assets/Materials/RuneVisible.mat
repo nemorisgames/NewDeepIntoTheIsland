@@ -258,10 +258,10 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0, g: 0.09362745, b: 0.02254902, a: 1}
+    - _Color: {r: 1.490566, g: 0, b: 0, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor: {r: 0, g: 0.09362745, b: 0.02254902, a: 1}
+    - _EmissiveColor: {r: 1.490566, g: 0, b: 0, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _PeeledBarkColor: {r: 1, g: 1, b: 1, a: 1}
@@ -273,4 +273,4 @@ Material:
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
-    - _UnlitColor: {r: 0, g: 1, b: 0.9717827, a: 1}
+    - _UnlitColor: {r: 1, g: 0.056943387, b: 0, a: 1}

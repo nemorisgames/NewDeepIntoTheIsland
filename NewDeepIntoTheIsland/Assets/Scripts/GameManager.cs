@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public bool batteryDepleded = false;
     [Header("Light Settings")]
+    public bool threatActivated = true;
     [HideInInspector]
     public bool lightActivated = false;
     public float timeUntilDarknessKill = 30f;
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator DarkenScene()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         for (int i = 0; i < 100; i++)
         {
             yield return new WaitForSeconds(0.01f);
@@ -79,12 +80,15 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         if (playerStatus == PlayerStatus.Dead) return;
-        if (currentTimeUntilDarknessKill < timeUntilDarknessKill)
+        if (threatActivated)
         {
-            currentTimeUntilDarknessKill = Mathf.Clamp(currentTimeUntilDarknessKill + (lightActivated ? -1f : 1f) * Time.deltaTime, 0f, timeUntilDarknessKill);
-            colorGrading.postExposure.value = (exposureRange.y - (exposureRange.y - exposureRange.x) * (currentTimeUntilDarknessKill / timeUntilDarknessKill));
+            if (currentTimeUntilDarknessKill < timeUntilDarknessKill)
+            {
+                currentTimeUntilDarknessKill = Mathf.Clamp(currentTimeUntilDarknessKill + (lightActivated ? -1f : 1f) * Time.deltaTime, 0f, timeUntilDarknessKill);
+                colorGrading.postExposure.value = (exposureRange.y - (exposureRange.y - exposureRange.x) * (currentTimeUntilDarknessKill / timeUntilDarknessKill));
+            }
+            else KillPlayer();
         }
-        else KillPlayer();
     }
 }
 

@@ -18,6 +18,7 @@ public class CellPhone : MonoBehaviour
     public GameObject lightOnText;
 	bool bringingPhoneUp = false;
 	public bool active = false;
+    public Camera cameraPhone;
 
 	[Header("For Functions")]
 	public TweenAlpha[] functions;
@@ -74,6 +75,7 @@ public class CellPhone : MonoBehaviour
         showHandAndPhone(false);
         batteryBar.PlayForward();
         ChangeBatteryDuration(CellphoneFunctions.Menu);
+        activateCameraPhone(false);
     }
 	void Awake()
 	{
@@ -307,6 +309,11 @@ public class CellPhone : MonoBehaviour
         }
     }
 
+    void activateCameraPhone(bool activate)
+    {
+        cameraPhone.enabled = activate;
+    }
+
     private void Update()
     {
         batteryPercentage.text = Mathf.FloorToInt(batteryBar.value.x / 1f * 100f) + "%";
@@ -348,6 +355,7 @@ public class CellPhone : MonoBehaviour
             {
                 ScreenManager.Instance.CloseScreen();
                 ChangeBatteryDuration(CellphoneFunctions.Menu);
+                activateCameraPhone(false);
             }
             else
             {
@@ -404,6 +412,7 @@ public class CellPhone : MonoBehaviour
                     {
                         ScreenManager.Instance.ShowScreen(ScreenType.Camera);
                         ChangeBatteryDuration(CellphoneFunctions.CameraPhoto);
+                        activateCameraPhone(true);
                     }
                     else
                         prepareTakePhoto();
