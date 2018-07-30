@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: ce448a8080b4e934b8473badd27be402
 ModelImporter:
-  serializedVersion: 23
+  serializedVersion: 22
   fileIDToRecycleName:
     100000: l_clavicleProxy_geo
     100002: l_shourderProxy_geo
@@ -619,8 +619,6 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.Rendering.PostProcessing;
+//using UnityEngine.Rendering.PostProcessing;
 
 public class CellPhone : MonoBehaviour
 {
@@ -57,9 +57,9 @@ public class CellPhone : MonoBehaviour
 	float defaultIntensity = 0;
 	bool defaultLightEnabled = false;
 
-    public PostProcessVolume volume;
-    DepthOfField depthOfField;
-    MotionBlur motionBlur;
+    //public PostProcessVolume volume;
+    //DepthOfField depthOfField;
+    //MotionBlur motionBlur;
     MeshRenderer[] phoneRenderers;
     SkinnedMeshRenderer[] handRenderers;
 
@@ -68,8 +68,8 @@ public class CellPhone : MonoBehaviour
 		notification.SetActive(false);
 		cellphoneBody = transform.Find("Cuerpo").gameObject;
 		cellphoneBody.SetActive(active);
-        volume.profile.TryGetSettings(out depthOfField);
-        volume.profile.TryGetSettings(out motionBlur);
+        //volume.profile.TryGetSettings(out depthOfField);
+        //volume.profile.TryGetSettings(out motionBlur);
         phoneRenderers = GetComponentsInChildren<MeshRenderer>();
         handRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
         showHandAndPhone(false);
@@ -258,9 +258,9 @@ public class CellPhone : MonoBehaviour
 
 	void ShowNotification(string message)
 	{
-		//if (!showingNotification)
-		//{
-            MessageReview.instance.AddMessage(message);
+        //if (!showingNotification)
+        //{
+            MessageManager.instance.AddMessage(message);
 			currentNotifications = 0;
 			//showingNotification = true; //can be used to close notification when she shows the cell phone
 			//InvokeRepeating("NotificationSound", 0f, 1.5f);
@@ -376,8 +376,8 @@ public class CellPhone : MonoBehaviour
                             transform.parent = null;
                         }
                     }
-                    depthOfField.active = !phoneUp;
-                    motionBlur.active = !phoneUp;
+                    //depthOfField.active = !phoneUp;
+                    //motionBlur.active = !phoneUp;
                     showHandAndPhone(phoneUp);
                     ScreenManager.Instance.CloseScreen();
                 }

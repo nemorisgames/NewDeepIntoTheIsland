@@ -3,7 +3,7 @@
 --- !u!89 &8900000
 Cubemap:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Reflection
   m_ImageContentsHash:
@@ -18,8 +18,6 @@ Cubemap:
   m_TextureFormat: 5
   m_MipCount: 7
   m_IsReadable: 1
-  m_StreamingMipmaps: 0
-  m_StreamingMipmapsPriority: 0
   m_AlphaIsTransparency: 0
   m_ImageCount: 6
   m_TextureDimension: 2

@@ -4,7 +4,7 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Fire
   m_Shader: {fileID: 4800000, guid: 8ef4d5815d2bdca4ebddfd2ea1415ef8, type: 3}
@@ -27,4 +27,4 @@ Material:
     - _InvFade: 1.1067857
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _TintColor: {r: 0, g: 1, b: 0.027072191, a: 0.5019608}
+    - _TintColor: {r: 1, g: 0.5740366, b: 0.38235295, a: 0.47058824}

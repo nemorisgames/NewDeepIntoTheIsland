@@ -88,6 +88,7 @@ public class PhotoReview : MonoBehaviour
 		for (int i = 0; i < photoNumber; i++)
 		{
 			path = Application.persistentDataPath + "/" + TakePhoto.photoName + i + ".png";
+            print(path);
 			if (File.Exists(path))
 			{
 				fileData = File.ReadAllBytes(path);

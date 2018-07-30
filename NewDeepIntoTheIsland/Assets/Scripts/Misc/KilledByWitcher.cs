@@ -30,7 +30,7 @@ public class KilledByWitcher : MonoBehaviour {
 
         witcher.SetPositionAndRotation(realWitcher.position + realWitcher.up * 0f, Quaternion.Euler(0f, realWitcher.eulerAngles.y, realWitcher.eulerAngles.z));
         //witcher.Rotate(0f, 160f, 0f);
-        witcher.transform.position += witcher.transform.forward * -0.1f + witcher.transform.up * 0f + witcher.transform.right * -0.3f;
+        witcher.transform.position += witcher.transform.forward * -0.3f + witcher.transform.up * 0f + witcher.transform.right * -0f;
         animator.SetTrigger("Kill");
         StartCoroutine(GetGrabbed());
     }

@@ -73,7 +73,7 @@ public class ScreenManager : MonoBehaviour
         int index = 0;
         for(int i = 0; i < screens.Length; i++)
         {
-            if (type == ScreenType.Message && screens[i].GetComponent<MessageReview>() != null)
+            if (type == ScreenType.Message && screens[i].GetComponent<MessageManager>() != null)
             {
                 index = i;
                 break;
@@ -117,7 +117,7 @@ public class ScreenManager : MonoBehaviour
 				screens[index].GetComponent<ViewPages>().Load();
 				break;
             case ScreenType.Message:
-                screens[index].GetComponent<MessageReview>().CheckMessages();
+                screens[index].GetComponent<MessageManager>().CheckMessages();
                 menuScreen.SetActive(false);
                 break;
             default:
