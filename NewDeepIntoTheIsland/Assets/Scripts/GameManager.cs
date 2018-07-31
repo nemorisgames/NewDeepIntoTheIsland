@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering.PostProcessing;
 
 public class GameManager : MonoBehaviour {
     [Header("General Settings")]
@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviour {
     public bool lightActivated = false;
     public float timeUntilDarknessKill = 30f;
     float currentTimeUntilDarknessKill = 0f;
-    //public PostProcessVolume postProcessVolume;
-    //ColorGrading colorGrading;
+    public PostProcessVolume postProcessVolume;
+    ColorGrading colorGrading;
     Vector2 exposureRange = new Vector2(-1f, 1.95f);
 
     public enum WitcherStatus { Hidden, Watching, Chasing, Hiding };
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour {
                 Destroy(gameObject);
             }
         }
-        //postProcessVolume.profile.TryGetSettings(out colorGrading);
+        postProcessVolume.profile.TryGetSettings(out colorGrading);
         player = GameObject.FindWithTag("Player");
         playerInput = player.GetComponent<vp_FPInput>();
         if (audioTransformsUpdater != null)
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < 100; i++)
         {
             yield return new WaitForSeconds(0.01f);
-            //colorGrading.postExposure.value -= 0.05f;
+            colorGrading.postExposure.value -= 0.05f;
         }
         print("finish");
     }
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour {
             if (currentTimeUntilDarknessKill < timeUntilDarknessKill)
             {
                 currentTimeUntilDarknessKill = Mathf.Clamp(currentTimeUntilDarknessKill + (lightActivated ? -1f : 1f) * Time.deltaTime, 0f, timeUntilDarknessKill);
-                //colorGrading.postExposure.value = (exposureRange.y - (exposureRange.y - exposureRange.x) * (currentTimeUntilDarknessKill / timeUntilDarknessKill));
+                colorGrading.postExposure.value = (exposureRange.y - (exposureRange.y - exposureRange.x) * (currentTimeUntilDarknessKill / timeUntilDarknessKill));
             }
             else KillPlayer();
         }

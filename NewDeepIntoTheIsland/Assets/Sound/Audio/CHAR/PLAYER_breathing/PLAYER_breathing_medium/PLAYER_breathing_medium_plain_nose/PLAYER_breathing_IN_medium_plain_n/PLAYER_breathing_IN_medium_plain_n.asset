@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d72fdeae34806243ba705deb00d282b, type: 3}
-  m_Name: PLAYER_breathing_IN_medium_plain_n
+  m_Name: PLAYER_breathing_IN_medium_plain_nose
   m_EditorClassIdentifier: 
   program:
     clips:

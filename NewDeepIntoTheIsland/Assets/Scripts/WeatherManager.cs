@@ -111,6 +111,15 @@ public class WeatherManager : MonoBehaviour
 	}
 	IEnumerator SmoothWeatherChange(float time, float objectiveRate, float objectiveRateSheet)
 	{
+        /*
+		var em = particles.emission;
+		var rate = new ParticleSystem.MinMaxCurve();
+		var emSheet = rainSheet.emission;
+		var rateSheet = new ParticleSystem.MinMaxCurve();
+		rateSheet.mode = ParticleSystemCurveMode.Constant;
+		rate.mode = ParticleSystemCurveMode.Constant;*/
+        //rate = em.rateOverTime;
+        //rateSheet = emSheet.rateOverTime;
 
         ParticleSystemRenderer p = particles.GetComponent<ParticleSystemRenderer>();
         float currentRate = p.material.GetColor("_TintColor").a;
@@ -122,6 +131,11 @@ public class WeatherManager : MonoBehaviour
 		for (int i = 0; i < steps; i++)
 		{
 			yield return new WaitForSeconds(time / steps);
+            /*
+			rate.constant += ((objectiveRate - currentRate)) / steps;
+			rateSheet.constant += sheetStep;
+			em.rateOverTime = rate;
+			emSheet.rateOverTime = rateSheet;*/
             p.material.SetColor("_TintColor", new Color(0.5f, 0.5f, 0.5f, currentRate + i * ((objectiveRate - currentRate)) / steps));
             r.material.SetColor("_TintColor", new Color(0.5f, 0.5f, 0.5f, currentRateSheet + i * ((objectiveRateSheet - currentRateSheet)) / steps));
         }
@@ -145,22 +159,22 @@ public class WeatherManager : MonoBehaviour
                     //Debug.Log ("Low Rain");
                     break;
                 case Weather.RainLow:
-					StartCoroutine(SmoothWeatherChange(time, 0.25f, 0.1f));
+					StartCoroutine(SmoothWeatherChange(time, 0.15f, 0.1f));
 					StartCoroutine(SmoothAudioChange(time, 0.5f, currentWeather));
 					//Debug.Log ("Low Rain");
 					break;
 				case Weather.RainNormal:
-					StartCoroutine(SmoothWeatherChange(time, 0.5f, 0.25f));
+					StartCoroutine(SmoothWeatherChange(time, 0.25f, 0.25f));
 					StartCoroutine(SmoothAudioChange(time, 0.5f, currentWeather));
 					//Debug.Log ("Normal Rain");
 					break;
 				case Weather.RainHeavy:
-					StartCoroutine(SmoothWeatherChange(time, 0.75f, 0.4f));
+					StartCoroutine(SmoothWeatherChange(time, 0.5f, 0.4f));
 					StartCoroutine(SmoothAudioChange(time, 0.75f, currentWeather));
 					//Debug.Log ("Heavy Rain");
 					break;
 				case Weather.RainStorm:
-					StartCoroutine(SmoothWeatherChange(time, 1f, 0.5f));
+					StartCoroutine(SmoothWeatherChange(time, 0.7f, 0.5f));
 					StartCoroutine(SmoothAudioChange(time, 0.75f, currentWeather));
 					ThunderAndFlash();
 					//Debug.Log ("Thunder");
@@ -203,8 +217,38 @@ public class WeatherManager : MonoBehaviour
 		float time = Vector3.Distance(thunderSounds[pos].transform.position, GameObject.FindWithTag("Player").transform.position) * 0.05f;
 		StartCoroutine(ThunderSound((ulong)time, pos, 1f));
 	}
+	/*void NextWeather()
+	{
+		currentWeather++;
+		if (currentWeather > 3)
+		{
+			currentWeather = 0;
+		}
+		StartNewWeather();
+	}
+	void LastWeather()
+	{
+		currentWeather--;
+		if (currentWeather < 0)
+			currentWeather = 2;
+		StartNewWeather();
+	}*/
 	void Update()
 	{
         particles.transform.position = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+        //for debuging
+        /*if (!debug)
+			return;
+		if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+		{
+			if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+			{
+				NextWeather();
+			}
+			if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+			{
+				LastWeather();
+			}
+		}*/
     }
 }

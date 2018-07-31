@@ -37,38 +37,71 @@ public class TakePhoto : MonoBehaviour
     public void OnEnable()
     {
         // register the callback when enabling object
-        //RenderPipeline.beginCameraRendering += CameraFinishRender;
-        Camera.onPostRender += CameraFinishRender;
+        RenderPipeline.beginCameraRendering += CameraFinishRender;
+        //Camera.onPostRender += CameraFinishRender;
     }
 
     public void OnDisable()
     {
         // remove the callback when disabling object
-        //RenderPipeline.beginCameraRendering -= CameraFinishRender;
-        Camera.onPostRender -= CameraFinishRender;
+        RenderPipeline.beginCameraRendering -= CameraFinishRender;
+        //Camera.onPostRender -= CameraFinishRender;
     }
 
     void CameraFinishRender(Camera cam)
 	{
 		if (save)
 		{
-            int width = cellphoneView.pixelWidth;
-            int height = cellphoneView.pixelHeight;
-            Debug.Log(width + " " + height);
-            Texture2D virtualPhoto = new Texture2D(width, height, TextureFormat.RGB24, false);
-            // false, meaning no need for mipmaps
-            virtualPhoto.ReadPixels(new Rect(0, 0, width, height), 0, 0);
-            virtualPhoto.Apply();
 
-            // consider ... Destroy(tempRT);
+            Texture2D tex = new Texture2D(screenTexture.width, screenTexture.height);
+            RenderTexture.active = screenTexture;
+            tex.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0);
+            tex.Apply();
 
             byte[] bytes;
-            bytes = virtualPhoto.EncodeToPNG();
+            bytes = tex.EncodeToPNG();
 
             System.IO.File.WriteAllBytes(ScreenShotLocation(), bytes);
             save = false;
-            RenderTexture.active = screenTexture; //can help avoid errors 
-            cellphoneView.targetTexture = screenTexture;
+            RenderTexture.active = screenTexture;
+            
+            /*int width = Screen.width;
+            int height = Screen.height;
+			Debug.Log(width + " " + height);
+			//RenderTexture.active = tempRT;
+			Texture2D virtualPhoto = new Texture2D(width, height, TextureFormat.RGB24, false);
+			// false, meaning no need for mipmaps
+			virtualPhoto.ReadPixels(Camera.main.pixelRect, 0, 0);
+			virtualPhoto.Apply();
+			// consider ... Destroy(tempRT);
+
+			byte[] bytes;
+			bytes = virtualPhoto.EncodeToPNG();
+
+			System.IO.File.WriteAllBytes(ScreenShotLocation(), bytes);
+			save = false;
+			//RenderTexture.active = screenTexture; //can help avoid errors 
+			//cellphoneView.targetTexture = screenTexture;
+			//cellphoneView.cullingMask = defaultCulling;
+            */
+            /*int width = Camera.main.pixelWidth;
+            int height = Camera.main.pixelHeight;
+            Texture2D snapShot = new Texture2D(width, height, TextureFormat.ARGB32, false);
+            RenderTexture snapShotRT = new RenderTexture(width, height, 24, RenderTextureFormat.ARGB32); // We're gonna render the entire screen into this
+            RenderTexture.active = snapShotRT;
+            //Camera.main.Render();
+            //snapShotRT = Camera.main.targetTexture;
+            Rect lassoRectSS = new Rect(0, 0, width, height);
+            snapShot.ReadPixels(lassoRectSS, 0, 0);
+            snapShot.Apply();
+
+            byte[] bytes;
+            bytes = snapShot.EncodeToPNG();
+
+            System.IO.File.WriteAllBytes(ScreenShotLocation(), bytes);
+            save = false;
+            RenderTexture.active = null;
+            Camera.main.targetTexture = null;*/
         }
 	}
 	private string ScreenShotLocation()

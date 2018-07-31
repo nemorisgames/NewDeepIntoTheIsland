@@ -4,7 +4,7 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Distortion
   m_Shader: {fileID: 4800000, guid: 652c2a99c6cba874ca99f3e5bd619e1c, type: 3}
