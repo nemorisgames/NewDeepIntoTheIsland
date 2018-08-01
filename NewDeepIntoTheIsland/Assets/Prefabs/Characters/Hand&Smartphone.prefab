@@ -1836,7 +1836,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1414613723171870}
   m_LocalRotation: {x: 0, y: 0, z: 0.000000075356915, w: 1}
-  m_LocalPosition: {x: 219, y: 14, z: 0}
+  m_LocalPosition: {x: 218, y: 14, z: 0}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_Children:
   - {fileID: 4772067472772516}
@@ -2532,7 +2532,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1746095060094762}
   m_LocalRotation: {x: -0, y: 0.007739578, z: -0, w: 0.9999701}
-  m_LocalPosition: {x: 3.7691398, y: 2.19, z: -0.770495}
+  m_LocalPosition: {x: 109.8922, y: 18.210001, z: 33.639732}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4520696151119136}
@@ -2591,7 +2591,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 900
+  far clip plane: 1000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -3241,9 +3241,9 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 7.127691
-  m_Range: 50
-  m_SpotAngle: 60
+  m_Intensity: 53.43514
+  m_Range: 200
+  m_SpotAngle: 90.8
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -3264,7 +3264,7 @@ Light:
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 11000
+  m_ColorTemperature: 8562
   m_UseColorTemperature: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -3515,7 +3515,7 @@ MonoBehaviour:
   lightStandBy: {fileID: 108813827503566990}
   lightOnText: {fileID: 1066108848726206}
   active: 1
-  cameraPhone: {fileID: 0}
+  cameraPhone: {fileID: 20997922248075130}
   functions:
   - {fileID: 114718800050703052}
   - {fileID: 114661250609588568}
@@ -4117,9 +4117,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   directionalIntensity: 3.1415927
-  punctualIntensity: 600
+  punctualIntensity: 100
   areaIntensity: 200
-  enableSpotReflector: 0
+  enableSpotReflector: 1
   m_InnerSpotPercent: 0
   lightDimmer: 1
   volumetricDimmer: 1
