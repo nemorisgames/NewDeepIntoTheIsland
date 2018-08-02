@@ -1458,17 +1458,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ItemRecords:
-    itemList: 150
-    helpbox: 133
+    itemList: 56
+    helpbox: 139
   m_ItemCaps:
     itemList: 219
     helpbox: 100
   m_SpaceLimit:
     spaceLimit: 77
     helpbox: 221
-  ItemInstances:
-  - Type: {fileID: 11400000, guid: 946f653b3250fba4caf20b0e8589e14a, type: 2}
-    ID: 0
+  ItemInstances: []
   m_ItemCapInstances:
   - Type: {fileID: 11400000, guid: 946f653b3250fba4caf20b0e8589e14a, type: 2}
     Cap: 1
@@ -1482,25 +1480,7 @@ MonoBehaviour:
     Cap: 100
   - Type: {fileID: 11400000, guid: c11d93b063eaa9043b51fa3831599c63, type: 2}
     Cap: 100
-  m_UnitBankInstances:
-  - Type: {fileID: 11400000, guid: 9c735e67aa6215240940ff57b7665829, type: 2}
-    ID: 0
-    UnitType: {fileID: 11400000, guid: 324ca7eed539b8144ba9097e62aefd8a, type: 2}
-    Count: 19
-    m_Capacity: 19
-    m_Inventory: {fileID: 114261352066572274}
-  - Type: {fileID: 11400000, guid: 2fbc485ea2e99724eb6000259b3f0434, type: 2}
-    ID: 0
-    UnitType: {fileID: 11400000, guid: c11d93b063eaa9043b51fa3831599c63, type: 2}
-    Count: 50
-    m_Capacity: 50
-    m_Inventory: {fileID: 114261352066572274}
-  - Type: {fileID: 11400000, guid: 29896fc7c28d9004a810cf00f1ad97e1, type: 2}
-    ID: 0
-    UnitType: {fileID: 11400000, guid: 324ca7eed539b8144ba9097e62aefd8a, type: 2}
-    Count: 6
-    m_Capacity: 6
-    m_Inventory: {fileID: 114261352066572274}
+  m_UnitBankInstances: []
   m_InternalUnitBanks: []
   CapsEnabled: 1
   SpaceEnabled: 0
