@@ -141,9 +141,8 @@ public class WeatherManager : MonoBehaviour
         }
     }
 
-	public void StartNewWeather(Weather newWeather)
+	public void StartNewWeather(Weather newWeather, float time = 5f)
 	{
-		float time = 5f;
 		print("weather " + currentWeather);
 		currentWeather = newWeather;
 		Debug.Log("Changing weather to " + currentWeather);
@@ -206,7 +205,7 @@ public class WeatherManager : MonoBehaviour
 		Debug.Log("ThunderSound");
 	}
 
-	void ThunderAndFlash(int pos = -1)
+	public void ThunderAndFlash(int pos = -1)
 	{
 		if (pos == -1)
 			pos = Random.Range(0, thunderSounds.Length);

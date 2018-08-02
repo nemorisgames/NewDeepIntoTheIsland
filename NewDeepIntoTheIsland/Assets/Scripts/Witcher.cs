@@ -7,6 +7,11 @@ using UnityEngine.AI;
 public class Witcher : MonoBehaviour
 {
     public Transform[] spawnPositions;
+    public Transform [] relativeSpawnPositions;
+    public bool useWaitTime = true;
+    public bool approach = false;
+    public float approachSpeed = 0.5f;
+    public float runSpeed = 5f;
 
     Transform player;
     Animator animator;
@@ -19,9 +24,16 @@ public class Witcher : MonoBehaviour
     float currentTimeUntilChase = 0f;
     public float chaseTime = 4f;
     float currentChaseTime = 0f;
+    bool chasePlayer = true;
 
     ArrayList renderizableObjects = new ArrayList();
     ParticleSystem[] particles;
+
+    public enum SpawnPos{
+        back = 0,
+        front = 1,
+        closest = 2
+    }
 
     void Start()
     {
@@ -37,6 +49,7 @@ public class Witcher : MonoBehaviour
             renderizableObjects.Add(sk.gameObject);
         ChangeStatus(GameManager.WitcherStatus.Hidden);
         currentTimeHidden = Time.time + timeHidden;
+        Random.InitState(System.DateTime.Now.Minute * System.DateTime.Now.Second * System.DateTime.Now.Hour);
     }
 
     void ShowRenderizableObjects(bool show)
@@ -72,6 +85,46 @@ public class Witcher : MonoBehaviour
         return spawnPositions[indexSelected];
     }
 
+    Transform GetSpawnPosition(SpawnPos preferred = SpawnPos.front, float fixedDistance = -1)
+    {
+        Transform t = null;
+        NavMeshHit hitFront, hitBack;
+        bool front, back;
+        front =  NavMesh.SamplePosition(relativeSpawnPositions[1].position,out hitFront,1f,LayerMask.NameToLayer("Walkable"));
+        back = NavMesh.SamplePosition(relativeSpawnPositions[0].position,out hitBack,1f,LayerMask.NameToLayer("Walkable"));
+        switch(preferred)
+        {
+            case SpawnPos.back:
+                if(back)
+                    t = relativeSpawnPositions[0];
+                else if(front)
+                    t = relativeSpawnPositions[1];
+            break;
+
+            case SpawnPos.front:
+                if(front)
+                    t = relativeSpawnPositions[1];
+                else if(back)
+                    t = relativeSpawnPositions[0];
+            break;
+
+            case SpawnPos.closest:
+                t = GetClosestSpawnPosition(GameManager.instance.player.transform);
+            break;
+
+        }
+        if(fixedDistance != -1 && preferred != SpawnPos.closest)
+        {
+            fixedDistance = Mathf.Clamp(fixedDistance,5f,float.MaxValue);
+            if(preferred == SpawnPos.back)
+                fixedDistance *= -1;
+            Transform aux = t;
+            aux.localPosition = new Vector3(aux.localPosition.x,aux.localPosition.y,fixedDistance);
+            t = aux;
+        }
+        return t;
+    }
+
     public void ChangeStatus(GameManager.WitcherStatus w)
     {
         if(w == GameManager.WitcherStatus.Hidden)
@@ -95,29 +148,62 @@ public class Witcher : MonoBehaviour
         }*/
         GameManager.instance.witcherStatus = w;
     }
+
+    public void StartWatching(SpawnPos spawnPos = SpawnPos.front, Weather weather = Weather.RainNone, float weatherTime = 5f, bool thunder = false, float fixedDistance = -1, bool chasePlayer = true){
+        if(GameManager.instance.witcherStatus == GameManager.WitcherStatus.Hidden){
+            WeatherManager.Instance.StartNewWeather(weather, weatherTime);
+            if(thunder)
+                WeatherManager.Instance.ThunderAndFlash();
+            transform.position = GetSpawnPosition(spawnPos, fixedDistance).position;
+            transform.LookAt(GameManager.instance.player.transform);
+            ChangeStatus(GameManager.WitcherStatus.Watching);
+            currentTimeUntilChase = Time.time + timeUntilChase * Random.Range(0.4f, 2f);
+            this.chasePlayer = chasePlayer;
+            animator.SetFloat("InputVertical", agent.velocity.magnitude * 0.1f);
+            if(approach){
+                agent.speed = approachSpeed;
+                destination = player.position;
+                agent.destination = destination;
+            }
+        }
+    }
     
     void Update()
     {
+        //NavMeshHit hitFront, hitBack;
+        //Debug.Log("Front: "+NavMesh.SamplePosition(relativeSpawnPositions[1].position,out hitFront,1f,LayerMask.NameToLayer("Walkable"))+" | Back: "+NavMesh.SamplePosition(relativeSpawnPositions[0].position,out hitBack,1f,LayerMask.NameToLayer("Walkable")));
         switch (GameManager.instance.witcherStatus) {
             case GameManager.WitcherStatus.Hidden:
-                if(currentTimeHidden <= Time.time)
+                if(useWaitTime && currentTimeHidden <= Time.time)
                 {
-                    transform.position = GetClosestSpawnPosition(GameManager.instance.player.transform).position;
+                    StartWatching();
+                    /*transform.position = GetClosestSpawnPosition(GameManager.instance.player.transform).position;
+                    transform.position = GetRelativeSpawnPosition(SpawnPos.front).position;
                     transform.LookAt(GameManager.instance.player.transform);
                     ChangeStatus(GameManager.WitcherStatus.Watching);
                     currentTimeUntilChase = Time.time + timeUntilChase * Random.Range(0.4f, 2f);
-                    animator.SetFloat("InputVertical", agent.velocity.magnitude * 0.1f);
+                    animator.SetFloat("InputVertical", agent.velocity.magnitude * 0.1f);*/
                 }
                 break;
             case GameManager.WitcherStatus.Watching:
                 transform.LookAt(GameManager.instance.player.transform);
                 if (currentTimeUntilChase <= Time.time)
                 {
-                    ChangeStatus(GameManager.WitcherStatus.Chasing);
-                    currentChaseTime = Time.time + chaseTime * Random.Range(0.4f, 2f);
-                    destination = player.position;
-                    agent.destination = destination;
+                    if(chasePlayer)
+                    {
+                        ChangeStatus(GameManager.WitcherStatus.Chasing);
+                        currentChaseTime = Time.time + chaseTime * Random.Range(0.4f, 2f);
+                        agent.speed = runSpeed;
+                        destination = player.position;
+                        agent.destination = destination;
+                    }
+                    else
+                    {
+                        agent.destination = transform.position;
+                        ChangeStatus(GameManager.WitcherStatus.Hiding);
+                    }
                 }
+                
                 break;
             case GameManager.WitcherStatus.Chasing:
                 animator.SetFloat("InputVertical", agent.velocity.magnitude * 0.1f);
@@ -150,6 +236,7 @@ public class Witcher : MonoBehaviour
                     animator.SetFloat("InputVertical", agent.velocity.magnitude * 0.1f);
                     currentTimeHidden = Time.time + timeHidden * Random.Range(0.4f, 2f);
                     ChangeStatus(GameManager.WitcherStatus.Hidden);
+                    WeatherManager.Instance.StartNewWeather(Weather.RainNone,2);
                 }
                 break;
         }

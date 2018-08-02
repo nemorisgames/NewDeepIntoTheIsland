@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public WitcherStatus witcherStatus = WitcherStatus.Hidden;
     public KilledByWitcher killedByWitcher;
+    [HideInInspector]
+    public Witcher witcher;
 
     private void Awake()
     {
@@ -52,6 +54,9 @@ public class GameManager : MonoBehaviour {
         }
         postProcessVolume.profile.TryGetSettings(out colorGrading);
         player = GameObject.FindWithTag("Player");
+        GameObject w = GameObject.FindWithTag("Witcher");
+        if(w != null)
+            witcher = w.GetComponent<Witcher>();
         playerInput = player.GetComponent<vp_FPInput>();
         if (audioTransformsUpdater != null)
             audioTransformsUpdater(player.transform, Camera.main.transform);
