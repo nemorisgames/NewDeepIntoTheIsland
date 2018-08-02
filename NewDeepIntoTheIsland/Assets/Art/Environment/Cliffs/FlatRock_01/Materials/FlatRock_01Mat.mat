@@ -482,9 +482,9 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BackfaceBaseColorScale: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseColor: {r: 0.8301887, g: 0.800882, b: 0.71662515, a: 1}
+    - _BaseColor: {r: 0.5849056, g: 0.56740034, b: 0.5214489, a: 1}
     - _BaseColorRandomize: {r: 0, g: 0, b: 0, a: 0.05}
-    - _Color: {r: 0.8301887, g: 0.800882, b: 0.71662515, a: 1}
+    - _Color: {r: 0.5849056, g: 0.5674003, b: 0.5214489, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
