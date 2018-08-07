@@ -28,6 +28,9 @@ public class Witcher : MonoBehaviour
 
     ArrayList renderizableObjects = new ArrayList();
     ParticleSystem[] particles;
+    public AudioClip[] stepSound;
+    public float timeSteps = 0.3f;
+    float currentTimeSteps;
 
     public enum SpawnPos{
         back = 0,
@@ -92,6 +95,12 @@ public class Witcher : MonoBehaviour
         bool front, back;
         front =  NavMesh.SamplePosition(relativeSpawnPositions[1].position,out hitFront,1f,LayerMask.NameToLayer("Walkable"));
         back = NavMesh.SamplePosition(relativeSpawnPositions[0].position,out hitBack,1f,LayerMask.NameToLayer("Walkable"));
+        if (!front && !back)
+        {
+            //front = preferred == SpawnPos.front;
+            //back = preferred != SpawnPos.front;
+            preferred = SpawnPos.closest;
+        }
         switch(preferred)
         {
             case SpawnPos.back:
@@ -130,10 +139,12 @@ public class Witcher : MonoBehaviour
         if(w == GameManager.WitcherStatus.Hidden)
         {
             ShowRenderizableObjects(false);
+            GetComponent<AudioSource>().Stop();
         }
         else
         {
             ShowRenderizableObjects(true);
+            GetComponent<AudioSource>().Play();
         }
         /*switch (GameManager.instance.witcherStatus)
         {
@@ -154,7 +165,8 @@ public class Witcher : MonoBehaviour
             WeatherManager.Instance.StartNewWeather(weather, weatherTime);
             if(thunder)
                 WeatherManager.Instance.ThunderAndFlash();
-            transform.position = GetSpawnPosition(spawnPos, fixedDistance).position;
+            //transform.position = GetSpawnPosition(spawnPos, fixedDistance).position;
+            GetComponent<NavMeshAgent>().Warp(GetSpawnPosition(spawnPos, fixedDistance).position);
             transform.LookAt(GameManager.instance.player.transform);
             ChangeStatus(GameManager.WitcherStatus.Watching);
             currentTimeUntilChase = Time.time + timeUntilChase * Random.Range(0.4f, 2f);
@@ -174,9 +186,10 @@ public class Witcher : MonoBehaviour
         //Debug.Log("Front: "+NavMesh.SamplePosition(relativeSpawnPositions[1].position,out hitFront,1f,LayerMask.NameToLayer("Walkable"))+" | Back: "+NavMesh.SamplePosition(relativeSpawnPositions[0].position,out hitBack,1f,LayerMask.NameToLayer("Walkable")));
         switch (GameManager.instance.witcherStatus) {
             case GameManager.WitcherStatus.Hidden:
-                if(useWaitTime && currentTimeHidden <= Time.time)
+                if(useWaitTime)
                 {
-                    StartWatching();
+                    if(currentTimeHidden <= Time.time)
+                        StartWatching();
                     /*transform.position = GetClosestSpawnPosition(GameManager.instance.player.transform).position;
                     transform.position = GetRelativeSpawnPosition(SpawnPos.front).position;
                     transform.LookAt(GameManager.instance.player.transform);
@@ -192,6 +205,8 @@ public class Witcher : MonoBehaviour
                     if(chasePlayer)
                     {
                         ChangeStatus(GameManager.WitcherStatus.Chasing);
+                        AudioManager.Instance.PlayVoice(6);
+                        ShowMessageOnScreen.Instance.SetText("Oh god, No!");
                         currentChaseTime = Time.time + chaseTime * Random.Range(0.4f, 2f);
                         agent.speed = runSpeed;
                         destination = player.position;
@@ -212,8 +227,13 @@ public class Witcher : MonoBehaviour
                 {
                     destination = player.position;
                     agent.destination = destination;
+                    if (currentTimeSteps <= Time.time)
+                    {
+                        GetComponent<AudioSource>().PlayOneShot(stepSound[Random.Range(0, stepSound.Length)]);
+                        currentTimeSteps = Time.time + timeSteps;
+                    }
                 }
-                if (agent.remainingDistance < 1f)
+                if (agent.hasPath && agent.remainingDistance < 1f)
                 {
                     GameManager.instance.KillPlayer();
                     agent.destination = transform.position;
@@ -236,7 +256,7 @@ public class Witcher : MonoBehaviour
                     animator.SetFloat("InputVertical", agent.velocity.magnitude * 0.1f);
                     currentTimeHidden = Time.time + timeHidden * Random.Range(0.4f, 2f);
                     ChangeStatus(GameManager.WitcherStatus.Hidden);
-                    WeatherManager.Instance.StartNewWeather(Weather.RainNone,2);
+                    WeatherManager.Instance.StartNewWeather(Weather.RainNone,5);
                 }
                 break;
         }

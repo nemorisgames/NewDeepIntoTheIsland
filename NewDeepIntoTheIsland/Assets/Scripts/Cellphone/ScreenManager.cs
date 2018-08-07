@@ -33,6 +33,20 @@ public class ScreenManager : MonoBehaviour
 	void Start()
 	{
         inputUFPS = GameManager.instance.playerInput;
+        //Delete all photos at the beginning
+        int index = 0;
+        for (int i = 0; i < screens.Length; i++)
+        {
+            if (screens[i].GetComponent<PhotoReview>() != null)
+            {
+                index = i;
+                break;
+            }
+        }
+        screens[index].GetComponent<PhotoReview>().LoadPhotos();
+        screens[index].GetComponent<PhotoReview>().DeleteAllPhotos();
+        //until here
+
     }
 	void Awake()
 	{

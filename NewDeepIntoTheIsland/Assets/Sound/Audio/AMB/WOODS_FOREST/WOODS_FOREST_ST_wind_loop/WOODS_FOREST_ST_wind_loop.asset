@@ -22,8 +22,8 @@ MonoBehaviour:
     parameters:
       loop: 1
       volume:
-        min: 0.28
-        max: 0.3
+        min: 0.98
+        max: 1
       pitch:
         min: 0.95
         max: 1.05

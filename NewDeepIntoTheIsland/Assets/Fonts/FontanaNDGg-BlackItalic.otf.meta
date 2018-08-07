@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: f45d5055de3536249b51dc77450fae59
+timeCreated: 1490466757
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Fontana ND Gg
+  fontNames:
+  - Fontana ND Gg
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 29a84a93cad372e4d805f745ecd76a94, type: 3}
+  - {fileID: 12800000, guid: 5edb0b17664a56b47b84c6780d4cbf40, type: 3}
+  - {fileID: 12800000, guid: d73ee4fb506cca94780c93140caf7304, type: 3}
+  - {fileID: 12800000, guid: f214631d038e0b646b048320ba22adf4, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -171,6 +171,14 @@ public class PhotoReview : MonoBehaviour
 	{
 		ConfirmationPopup.SetActive(false);
 	}
+
+    public void DeleteAllPhotos()
+    {
+        while (photosTaken.Count > 0) {
+            DeletePhoto();
+        }
+    }
+
 	public void DeletePhoto()
 	{
 		photosTaken.RemoveAt(currentPhoto);

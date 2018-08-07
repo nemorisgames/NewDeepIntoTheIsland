@@ -719,9 +719,10 @@ GameObject:
   - component: {fileID: 95029534888285576}
   - component: {fileID: 195146003972411682}
   - component: {fileID: 114456814962993208}
+  - component: {fileID: 82977618612851022}
   m_Layer: 0
   m_Name: Witcher
-  m_TagString: Untagged
+  m_TagString: Witcher
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2515,7 +2516,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1432228351997060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.454569, y: 0, z: -6.1016245}
+  m_LocalPosition: {x: 89.5, y: 4.81, z: 106.8}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4255256045036162}
@@ -2527,6 +2528,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &82977618612851022
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1432228351997060}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243120594308202478, guid: e0e6fd549ff6823468be0b4060b59fd5,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 193fdafebd72b0340bbb6c23b3283d8b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 30
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &95029534888285576
 Animator:
   serializedVersion: 3
@@ -2561,9 +2658,25 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  relativeSpawnPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  useWaitTime: 0
+  approach: 1
+  approachSpeed: 0.5
+  runSpeed: 5
   timeHidden: 5
   timeUntilChase: 5
   chaseTime: 10
+  stepSound:
+  - {fileID: 8300000, guid: 89f97f08e6c83db429815f8c899be474, type: 3}
+  - {fileID: 8300000, guid: 36c1acc6ec13b0e4ebb54dc890009f66, type: 3}
+  - {fileID: 8300000, guid: 98024b1e16b169b4fba4d3d5bfc995a1, type: 3}
+  - {fileID: 8300000, guid: f6fb04bb896e44744bb2f6b732b211d2, type: 3}
+  - {fileID: 8300000, guid: a958222d3d4f5de45a35d19c16e101d7, type: 3}
+  - {fileID: 8300000, guid: 3a23efae85675d640bc398c9fe5b85e1, type: 3}
+  - {fileID: 8300000, guid: 19cf4e22cf2825a4abed25eeb654d855, type: 3}
+  timeSteps: 0.3
 --- !u!137 &137064612480156410
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2836,7 +2949,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.5
-  m_BaseOffset: -0.5
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!198 &198792965593695444

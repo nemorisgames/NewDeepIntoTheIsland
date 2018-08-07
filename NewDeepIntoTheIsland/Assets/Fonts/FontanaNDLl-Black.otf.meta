@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 3827c0ad65d1e63448ad3b6e1d1cf3f9
+timeCreated: 1490466757
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Fontana ND Ll
+  fontNames:
+  - Fontana ND Ll
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -8,6 +8,8 @@ public class LookAtObject : MonoBehaviour {
     public float refreshTime = 0.1f;
     float currentTime;
     float currentDistance;
+    bool active = true;
+    public GameObject window;
 	// Use this for initialization
 	void Start ()
     {
@@ -15,9 +17,28 @@ public class LookAtObject : MonoBehaviour {
         currentTime = Time.time + refreshTime;
         currentDistance = Vector3.Distance(objective.position, objectInBetween.position);
     }
+
+    public void Activate()
+    {
+        active = true;
+        window.SetActive(active);
+    }
+
+    public void Deactivate()
+    {
+        active = false;
+        window.SetActive(active);
+    }
+
+    public void Toggle()
+    {
+        active = !active;
+        window.SetActive(active);
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        if (!active) return;
 		if(currentTime < Time.time)
         {
             transform.LookAt(objective);

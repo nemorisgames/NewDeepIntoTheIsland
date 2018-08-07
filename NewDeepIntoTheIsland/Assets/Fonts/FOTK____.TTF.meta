@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 1e52ab306739b4444861371ca47271d3
+timeCreated: 1490466757
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: FontanaTextoKern
+  fontNames:
+  - FontanaTextoKern
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 17ce07107ed9af748adae3b7673f0a11, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

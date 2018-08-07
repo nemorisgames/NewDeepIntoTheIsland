@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: edb8012689280524fbe58d0ea4b584c3
+timeCreated: 1490466757
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Fontana ND Cc SC
+  fontNames:
+  - Fontana ND Cc SC
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 8b5a54e702c2f524898510993ce3e0b7, type: 3}
+  - {fileID: 12800000, guid: 51b965dd0f267a14697c5bc251e60e3e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

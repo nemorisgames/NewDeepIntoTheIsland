@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: efecba862e49071459f8360541a8f3a2
+timeCreated: 1490466757
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Fontana ND Ee OsF
+  fontNames:
+  - Fontana ND Ee OsF
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 52b1f415e0735164d995237b8001a3b9, type: 3}
+  - {fileID: 12800000, guid: 519824ba5c3d33c4da08ba31f29f5352, type: 3}
+  - {fileID: 12800000, guid: 68f0f09c144ca9e4397d114aaa41a595, type: 3}
+  - {fileID: 12800000, guid: 54683eed475bf734caed2855de66e434, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

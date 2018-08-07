@@ -12,6 +12,7 @@ public class ActivateWitcher : MonoBehaviour {
 	public bool useFixedDistance = false;
 	public float fixedDistance = 8f;
 	public bool chasePlayer = true;
+    public bool selfDestroy = true;
 
 	// Use this for initialization
 	void Start () {
@@ -26,6 +27,7 @@ public class ActivateWitcher : MonoBehaviour {
 			{
 				witcher.StartWatching(spawnPosition, weather, weatherTime, thunder, (useFixedDistance ? fixedDistance : -1f), chasePlayer);
 				triggerEnabled = false;
+                if (selfDestroy) Destroy(gameObject);
 			}
 		}
 	}

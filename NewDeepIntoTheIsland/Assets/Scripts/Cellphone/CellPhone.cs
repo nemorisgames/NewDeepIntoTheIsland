@@ -62,6 +62,7 @@ public class CellPhone : MonoBehaviour
     MotionBlur motionBlur;
     MeshRenderer[] phoneRenderers;
     SkinnedMeshRenderer[] handRenderers;
+    UIRoot rootNGUI;
 
     void Start()
 	{
@@ -72,6 +73,7 @@ public class CellPhone : MonoBehaviour
         volume.profile.TryGetSettings(out motionBlur);
         phoneRenderers = GetComponentsInChildren<MeshRenderer>();
         handRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        rootNGUI = GetComponentInChildren<UIRoot>();
         showHandAndPhone(false);
         batteryBar.PlayForward();
         ChangeBatteryDuration(CellphoneFunctions.Menu);
@@ -84,6 +86,8 @@ public class CellPhone : MonoBehaviour
 		defaultSpotAngle = light.spotAngle;
 		defaultLightEnabled = light.enabled;
 		Instance = this;
+        //change this line to allow camera bob instead to be always parented
+        //transform.parent = target;
     }
 
     void showHandAndPhone(bool show)
@@ -96,6 +100,7 @@ public class CellPhone : MonoBehaviour
         {
             m.enabled = show;
         }
+        rootNGUI.gameObject.SetActive(show);
     }
 
 	public void activate()
@@ -369,12 +374,12 @@ public class CellPhone : MonoBehaviour
                     }
                     else
                     {
-                        if (currentFunction == CellphoneFunctions.Menu)
-                        {
+                        //if (currentFunction == CellphoneFunctions.Menu)
+                        //{
                             ChangeBatteryDuration(CellphoneFunctions.Menu);
                             ResetToDefaults();
                             transform.parent = null;
-                        }
+                        //}
                     }
                     depthOfField.active = !phoneUp;
                     motionBlur.active = !phoneUp;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     [Header("General Settings")]
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour {
 
     public enum WitcherStatus { Hidden, Watching, Chasing, Hiding };
     [Header("Witcher Settings")]
-    [HideInInspector]
+    //[HideInInspector]
     public WitcherStatus witcherStatus = WitcherStatus.Hidden;
     public KilledByWitcher killedByWitcher;
     [HideInInspector]
@@ -80,7 +81,19 @@ public class GameManager : MonoBehaviour {
             colorGrading.postExposure.value -= 0.05f;
         }
         print("finish");
+        ShowGameOver();
     }
+
+    public void ShowGameOver()
+    {
+        SceneManager.LoadScene("GameOver");
+    }
+
+    public void ShowAccomplished()
+    {
+        SceneManager.LoadScene("Accomplished");
+    }
+
 
     // Update is called once per frame
     void Update () {

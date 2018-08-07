@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 906ba2385b378254ea40f870ca73cfd6
+timeCreated: 1490466757
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Fontana ND Cc OsF
+  fontNames:
+  - Fontana ND Cc OsF
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 2e5ae56a76f3d064399a5087de3c5041, type: 3}
+  - {fileID: 12800000, guid: 1cfb2f6ccf720214ea2926d46391d0d2, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

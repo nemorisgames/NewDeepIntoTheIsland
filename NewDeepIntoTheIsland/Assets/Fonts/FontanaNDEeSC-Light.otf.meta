@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 734b670a33670fa40aa5006ec420ccb5
+timeCreated: 1490466757
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Fontana ND Ee SC
+  fontNames:
+  - Fontana ND Ee SC
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 686e7e069a6cc4549b81e10c71f81e80, type: 3}
+  - {fileID: 12800000, guid: 4b99eb2b73f9aa848a3f2f67bac9e125, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

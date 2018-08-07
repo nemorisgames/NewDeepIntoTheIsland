@@ -42,6 +42,7 @@ public class KilledByWitcher : MonoBehaviour {
         grabbing = false;
         cameraKill.transform.parent = witcherRightHand;
         cameraKill.transform.localPosition += new Vector3(-0.3f, 0f, 0f);
+        AudioManager.Instance.PlayVoice(7);
         grabbed = true;
     }
 	

@@ -8,8 +8,9 @@ public class Lock : MonoBehaviour {
     public bool opened = false;
     bool rotating = false;
     public LockedObject objectToUnlock;
-	// Use this for initialization
-	void Start () {
+    public TweenScale tweenScale;
+    // Use this for initialization
+    void Start () {
 		
 	}
 
@@ -18,10 +19,10 @@ public class Lock : MonoBehaviour {
         if (rotating) return;
         rotating = true;
         Keys[index].tweenRotation.from = Keys[index].tweenRotation.to;
-        Keys[index].tweenRotation.to = new Vector3(0f, 0f, Keys[index].tweenRotation.from.z + 36f);
+        Keys[index].tweenRotation.to = new Vector3(0f, 0f, Keys[index].tweenRotation.from.z + 120f);
         Keys[index].tweenRotation.ResetToBeginning();
         Keys[index].tweenRotation.PlayForward();
-        Keys[index].currentIndex = (Keys[index].currentIndex+1)%10;
+        Keys[index].currentIndex = (Keys[index].currentIndex+1)%3;
     }
 
     public void RotationFinished()
@@ -63,7 +64,11 @@ public class Lock : MonoBehaviour {
 
     void CheckLock(){
         opened = CheckLockCombination();
-        if (opened && objectToUnlock != null) objectToUnlock.Unlock();
+        if (opened)
+        {
+            if (objectToUnlock != null) objectToUnlock.Unlock();
+            tweenScale.PlayForward();
+        }
     }
 
     bool CheckLockCombination()

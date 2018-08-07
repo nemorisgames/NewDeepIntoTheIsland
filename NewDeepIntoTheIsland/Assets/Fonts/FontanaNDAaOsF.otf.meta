@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 2ee3a04f4c999514b84f9f0fa26f25a1
+timeCreated: 1490466757
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Fontana ND Aa OsF
+  fontNames:
+  - Fontana ND Aa OsF
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0e3be5d33a4efa64091aeabc708f6978, type: 3}
+  - {fileID: 12800000, guid: 223c4b04ecfbd3746a07484f5cfaf711, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

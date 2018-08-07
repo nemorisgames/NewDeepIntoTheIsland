@@ -54,8 +54,10 @@ public class WeatherManager : MonoBehaviour
 			source_second = sources[1];
 			source_second.volume = 0;
 		}
-		//thunderSounds = thunderSpawns.GetComponentsInChildren<AudioSource>();
-	}
+        //thunderSounds = thunderSpawns.GetComponentsInChildren<AudioSource>();
+        //StartNewWeather(Weather.RainStorm);
+
+    }
 
 	IEnumerator SmoothAudioChange(float time, float objectiveVolume, Weather weatherSound)
 	{
@@ -95,7 +97,7 @@ public class WeatherManager : MonoBehaviour
 		two.Play();
 		two.loop = true;
 		two.volume = 0f;
-		int steps = 10;
+		int steps = 50;
 		if (time == 0) time = steps;
 		float volumeStep = (((objectiveVolume)) / steps);
 		Debug.Log(volumeStep);
@@ -136,8 +138,8 @@ public class WeatherManager : MonoBehaviour
 			rateSheet.constant += sheetStep;
 			em.rateOverTime = rate;
 			emSheet.rateOverTime = rateSheet;*/
-            p.material.SetColor("_TintColor", new Color(0.5f, 0.5f, 0.5f, currentRate + i * ((objectiveRate - currentRate)) / steps));
-            r.material.SetColor("_TintColor", new Color(0.5f, 0.5f, 0.5f, currentRateSheet + i * ((objectiveRateSheet - currentRateSheet)) / steps));
+            p.material.SetColor("_TintColor", new Color(0.8f, 0.8f, 0.8f, currentRate + i * ((objectiveRate - currentRate)) / steps));
+            r.material.SetColor("_TintColor", new Color(0.8f, 0.8f, 0.8f, currentRateSheet + i * ((objectiveRateSheet - currentRateSheet)) / steps));
         }
     }
 
@@ -213,7 +215,7 @@ public class WeatherManager : MonoBehaviour
 		StartCoroutine(FlashEffect(pos));
 		//calculate time based on distance of lightning to Cara
 		float dist = Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, thunderSounds[pos].transform.position);
-		float time = Vector3.Distance(thunderSounds[pos].transform.position, GameObject.FindWithTag("Player").transform.position) * 0.05f;
+		float time = Vector3.Distance(thunderSounds[pos].transform.position, GameObject.FindWithTag("Player").transform.position) * 0.02f;
 		StartCoroutine(ThunderSound((ulong)time, pos, 1f));
 	}
 	/*void NextWeather()
