@@ -179,9 +179,53 @@ public class Witcher : MonoBehaviour
             }
         }
     }
+
+    float currentTimeHiddenAux, currentChaseTimeAux, currentTimeStepsAux, currentTimeUntilChaseAux = 0;
+
+    public void Pause(bool b){
+        agent.isStopped = b;
+        switch (GameManager.instance.witcherStatus) {
+            case GameManager.WitcherStatus.Hidden:
+            if(b){
+                currentTimeHiddenAux = Time.time;
+            }
+            else{
+                currentTimeHiddenAux = Time.time - currentTimeHiddenAux;
+                currentTimeHidden += currentTimeHiddenAux;
+            }
+            break;
+
+            case GameManager.WitcherStatus.Watching:
+            if(b){
+                currentTimeUntilChaseAux = Time.time;
+            }
+            else{
+                currentTimeUntilChaseAux = Time.time - currentTimeUntilChaseAux;
+                currentTimeUntilChase += currentTimeUntilChaseAux;
+            }
+            break;
+
+            case GameManager.WitcherStatus.Chasing:
+            
+            if(b){
+                currentChaseTimeAux = Time.time;
+                currentTimeStepsAux = Time.time;
+            }
+            else{
+                currentChaseTimeAux = Time.time - currentChaseTimeAux;
+                currentChaseTime += currentChaseTimeAux;
+
+                currentTimeStepsAux = Time.time - currentTimeStepsAux;
+                currentTimeSteps += currentTimeStepsAux;
+            }
+            break;
+        }
+    }
     
     void Update()
     {
+        if(GameMenu.Instance.menuActive)
+            return;
         //NavMeshHit hitFront, hitBack;
         //Debug.Log("Front: "+NavMesh.SamplePosition(relativeSpawnPositions[1].position,out hitFront,1f,LayerMask.NameToLayer("Walkable"))+" | Back: "+NavMesh.SamplePosition(relativeSpawnPositions[0].position,out hitBack,1f,LayerMask.NameToLayer("Walkable")));
         switch (GameManager.instance.witcherStatus) {

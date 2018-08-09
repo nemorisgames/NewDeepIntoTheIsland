@@ -7,6 +7,8 @@ public class DemoPresentacion : MonoBehaviour {
 	public string sceneName;
 	public TweenAlpha fade;
 	bool loading = false;
+	AsyncOperation loadScene;
+	public bool autoLoad = false;
 
 	void Update(){
 		if(Input.GetKeyDown(KeyCode.Escape))
@@ -14,7 +16,12 @@ public class DemoPresentacion : MonoBehaviour {
 	}
 
 	void Start(){
-		fade.GetComponent<UI2DSprite>().alpha = 1;
+		if(fade != null){
+			//fade.GetComponent<UI2DSprite>().alpha = 1;
+			//fade.PlayForward();
+		}
+		loading = false;
+		StartCoroutine(LoadScene());
 	}
 
 	public void Play(){
@@ -22,10 +29,24 @@ public class DemoPresentacion : MonoBehaviour {
 			StartCoroutine(LoadWithFade());
 	}
 
+	IEnumerator LoadScene(){
+		loadScene = SceneManager.LoadSceneAsync(sceneName);
+		loadScene.allowSceneActivation = false;
+		if(autoLoad){
+			yield return new WaitForSeconds((fade != null ? fade.duration : 2f) + 3f);
+			Play();
+		}
+		yield return loadScene;
+	}
+
 	IEnumerator LoadWithFade(){
-		loading = true;
-		fade.PlayReverse();
-		yield return new WaitForSeconds(2f);
-		SceneManager.LoadScene(sceneName);
+		if(loadScene.progress >= 0.9f){
+			Debug.Log("load scene");
+			loading = true;
+			if(fade != null)
+				fade.PlayReverse();
+			yield return new WaitForSeconds(fade != null ? fade.duration : 2f);
+			loadScene.allowSceneActivation = true;
+		}
 	}
 }

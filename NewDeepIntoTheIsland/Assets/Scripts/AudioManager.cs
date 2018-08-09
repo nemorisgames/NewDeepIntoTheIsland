@@ -18,7 +18,8 @@ public class AudioManager : MonoBehaviour
     
     AudioSource bgSource;
 	AudioSource bgSource_second;
-	AudioSource voiceSource;
+	[HideInInspector]
+	public AudioSource voiceSource;
 	AudioSource voiceSource_second;
 	//public AudioSource efSource;
 	//public AudioSource efSource_second;

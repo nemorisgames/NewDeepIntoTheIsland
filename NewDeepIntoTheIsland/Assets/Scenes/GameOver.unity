@@ -223,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 140504817}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0017969452, y: 0.0017969452, z: 0.0017969452}
+  m_LocalScale: {x: 0.0017953322, y: 0.0017953322, z: 0.0017953322}
   m_Children:
   - {fileID: 212744153}
   - {fileID: 2025840051}
@@ -568,6 +568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Presentacion
   fade: {fileID: 455584177}
+  autoLoad: 1
 --- !u!4 &379618785
 Transform:
   m_ObjectHideFlags: 0
@@ -650,7 +651,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 2
+  duration: 1
   steeperCurves: 0
   tweenGroup: 0
   useFixedUpdate: 0
@@ -1179,8 +1180,8 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0.6320754, g: 0.623131, b: 0.623131, a: 1}
   mPivot: 4
-  mWidth: 2050
-  mHeight: 1118
+  mWidth: 2052
+  mHeight: 1119
   mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
