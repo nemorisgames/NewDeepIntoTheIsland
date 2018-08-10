@@ -332,7 +332,7 @@ public class CellPhone : MonoBehaviour
 
     void LateUpdate()
     {
-
+        if (GameMenu.Instance.menuActive) return;
         if (!phoneUp)
         {
             if (target != null)
@@ -355,38 +355,7 @@ public class CellPhone : MonoBehaviour
         //Checkout on cellphone or go back
         if (Input.GetButtonDown("Fire2"))
         {
-            
-            if (ScreenManager.showingScreen)
-            {
-                ScreenManager.Instance.CloseScreen();
-                ChangeBatteryDuration(CellphoneFunctions.Menu);
-                activateCameraPhone(false);
-            }
-            else
-            {
-                if (!bringingPhoneUp)
-                {
-                    phoneUp = !phoneUp;
-                    if (phoneUp)
-                    {
-                        StartCoroutine(PhoneUpAnimatedTransition());
-                        //ShowNotificationIfActive();
-                    }
-                    else
-                    {
-                        //if (currentFunction == CellphoneFunctions.Menu)
-                        //{
-                            ChangeBatteryDuration(CellphoneFunctions.Menu);
-                            ResetToDefaults();
-                            transform.parent = null;
-                        //}
-                    }
-                    depthOfField.active = !phoneUp;
-                    motionBlur.active = !phoneUp;
-                    showHandAndPhone(phoneUp);
-                    ScreenManager.Instance.CloseScreen();
-                }
-            }
+            TogglePhone();
         }
 
         if (!active || GameManager.instance.gameStatus == GameManager.GameStatus.Paused)
@@ -431,6 +400,40 @@ public class CellPhone : MonoBehaviour
                     ScreenManager.Instance.ShowScreen(ScreenType.Message);
                     ChangeBatteryDuration(CellphoneFunctions.Message);
                     break;
+            }
+        }
+    }
+
+    public void TogglePhone(){
+        if (ScreenManager.showingScreen)
+        {
+            ScreenManager.Instance.CloseScreen();
+            ChangeBatteryDuration(CellphoneFunctions.Menu);
+            activateCameraPhone(false);
+        }
+        else
+        {
+            if (!bringingPhoneUp)
+            {
+                phoneUp = !phoneUp;
+                if (phoneUp)
+                {
+                    StartCoroutine(PhoneUpAnimatedTransition());
+                    //ShowNotificationIfActive();
+                }
+                else
+                {
+                    //if (currentFunction == CellphoneFunctions.Menu)
+                    //{
+                        ChangeBatteryDuration(CellphoneFunctions.Menu);
+                        ResetToDefaults();
+                        transform.parent = null;
+                    //}
+                }
+                depthOfField.active = !phoneUp;
+                motionBlur.active = !phoneUp;
+                showHandAndPhone(phoneUp);
+                ScreenManager.Instance.CloseScreen();
             }
         }
     }

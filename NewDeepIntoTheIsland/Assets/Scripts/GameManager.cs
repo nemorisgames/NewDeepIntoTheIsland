@@ -65,6 +65,8 @@ public class GameManager : MonoBehaviour {
 
     public void KillPlayer()
     {
+        if(GameMenu.Instance.menuActive)
+            GameMenu.Instance.EnableMenu(false);
         ScreenManager.Instance.CloseScreen();
         playerStatus = PlayerStatus.Dead;
         playerInput.enabled = false;
