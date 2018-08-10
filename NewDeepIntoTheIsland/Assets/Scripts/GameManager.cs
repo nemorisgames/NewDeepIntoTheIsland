@@ -69,12 +69,17 @@ public class GameManager : MonoBehaviour {
         playerStatus = PlayerStatus.Dead;
         playerInput.enabled = false;
         killedByWitcher.Kill();
-        StartCoroutine(DarkenScene());
+        StartCoroutine(DarkenSceneRoutine(5f));
     }
 
-    IEnumerator DarkenScene()
+    public void DarkenScene(float time = 0.5f)
     {
-        yield return new WaitForSeconds(5f);
+        StartCoroutine(DarkenSceneRoutine(time));
+    }
+
+    IEnumerator DarkenSceneRoutine(float time = 0.5f)
+    {
+        yield return new WaitForSeconds(time);
         for (int i = 0; i < 100; i++)
         {
             yield return new WaitForSeconds(0.01f);
@@ -107,6 +112,18 @@ public class GameManager : MonoBehaviour {
             }
             else KillPlayer();
         }
+    }
+}
+
+[System.Serializable]
+public class CallbackObject
+{
+    public GameObject objective;
+    public string callback;
+
+    public void Call()
+    {
+        this.objective.SendMessage(callback);
     }
 }
 

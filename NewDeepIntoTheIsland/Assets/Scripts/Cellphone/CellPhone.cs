@@ -33,9 +33,9 @@ public class CellPhone : MonoBehaviour
     [Header("Battery")]
     public TweenScale batteryBar;
     float initialWidth;
-    float batteryTimeDuration = 600f;
-    float batteryLightDuration = 500f;
-    float batteryCameraDuration = 200f;
+    float batteryTimeDuration = 1200f;
+    float batteryLightDuration = 1000f;
+    float batteryCameraDuration = 500f;
     public UILabel batteryPercentage;
     public GameObject noBattery;
 

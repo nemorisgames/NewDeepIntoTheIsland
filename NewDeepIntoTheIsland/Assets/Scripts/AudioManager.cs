@@ -7,8 +7,9 @@ public class AudioManager : MonoBehaviour
 {
 	public static AudioManager Instance = null;
     public AudioClip[] CaraBreathingLevels;
-    
-	public AudioClip[] backgrounds;
+    public AudioMixerGroup breathMixer;
+
+    public AudioClip[] backgrounds;
     public AudioMixerGroup ambientMixer;
 	public AudioClip[] voices;
     public AudioMixerGroup voicesMixer;
@@ -19,7 +20,7 @@ public class AudioManager : MonoBehaviour
     AudioSource bgSource;
 	AudioSource bgSource_second;
 	AudioSource voiceSource;
-	AudioSource voiceSource_second;
+	AudioSource breathSource;
 	//public AudioSource efSource;
 	//public AudioSource efSource_second;
 	AudioSource situationSource;
@@ -56,9 +57,9 @@ public class AudioManager : MonoBehaviour
 			bgSource_second = GameObject.FindGameObjectWithTag("AudioManager").AddComponent<AudioSource>();
             bgSource_second.outputAudioMixerGroup = ambientMixer;
             bgSource_second.playOnAwake = false;
-			voiceSource_second = GameObject.FindGameObjectWithTag("AudioManager").AddComponent<AudioSource>();
-            voiceSource_second.outputAudioMixerGroup = voicesMixer;
-            voiceSource_second.playOnAwake = false;
+			breathSource = GameObject.FindGameObjectWithTag("AudioManager").AddComponent<AudioSource>();
+            breathSource.outputAudioMixerGroup = breathMixer;
+            breathSource.playOnAwake = false;
             voiceSource.spatialBlend = 1f;
             //efSource_second = GameObject.FindGameObjectWithTag("AudioManager").AddComponent<AudioSource>();
             //efSource_second.playOnAwake = false;
@@ -91,9 +92,9 @@ public class AudioManager : MonoBehaviour
             bgSource_second = sources[4];
 			bgSource_second.playOnAwake = false;
             bgSource_second.outputAudioMixerGroup = ambientMixer;
-            voiceSource_second = sources[5];
-			voiceSource_second.playOnAwake = false;
-            voiceSource_second.outputAudioMixerGroup = voicesMixer;
+            breathSource = sources[5];
+			breathSource.playOnAwake = false;
+            breathSource.outputAudioMixerGroup = breathMixer;
             //efSource_second = sources[6];
             //efSource_second.playOnAwake = false;
             situationSource_second = sources[7];
@@ -102,7 +103,13 @@ public class AudioManager : MonoBehaviour
         }
 
         PlayAmbientMusic(0);
+        PlayBreath(0);
 
+    }
+
+    public void PlayOneShot(AudioClip audioClip)
+    {
+        situationSource.PlayOneShot(audioClip);
     }
 
     public void PlayVoice(int i, float volume = 0)
@@ -158,19 +165,19 @@ public class AudioManager : MonoBehaviour
     
     public void PlayBreath(int severity)
     {
-        if (!voiceSource.isPlaying && voiceSource.clip != CaraBreathingLevels[severity])
+        if (breathSource.clip != CaraBreathingLevels[severity])
         {
-            voiceSource.clip = CaraBreathingLevels[severity];
-            voiceSource.Play();
+            breathSource.clip = CaraBreathingLevels[severity];
+            breathSource.Play();
         }
     }
 
     public void StopBreath()
     {
-        if (voiceSource.isPlaying)
+        if (breathSource.isPlaying)
         {
-            voiceSource.clip = null;
-            voiceSource.Stop();
+            breathSource.clip = null;
+            breathSource.Stop();
         }
     }
 
@@ -274,7 +281,8 @@ public class AudioManager : MonoBehaviour
         }
         if (vp_Input.GetButtonUp("Run"))
         {
-            StopBreath();
+            PlayBreath(0);
+            //StopBreath();
         }
     }
 }

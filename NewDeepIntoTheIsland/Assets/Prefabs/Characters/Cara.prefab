@@ -264,7 +264,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1879469805284586}
   m_LocalRotation: {x: -0, y: 0.1234189, z: -0, w: -0.9923547}
-  m_LocalPosition: {x: 108.039734, y: 18.18, z: 40.5516}
+  m_LocalPosition: {x: 108.039734, y: 17.08, z: 40.5516}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4411006734678994}
@@ -2081,7 +2081,7 @@ MonoBehaviour:
   SurfaceType: {fileID: 11400000, guid: d5038622b1b2a6f43874b4c45ddadc71, type: 2}
   AllowDecals: 0
   SurfaceID: 0
-  surfaceTypeHelp: 123
+  surfaceTypeHelp: 154
 --- !u!114 &114558588658002826
 MonoBehaviour:
   m_ObjectHideFlags: 1

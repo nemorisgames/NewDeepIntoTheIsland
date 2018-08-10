@@ -2017,6 +2017,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4943097039663528}
+  - component: {fileID: 95865909727929142}
+  - component: {fileID: 114315546294563118}
+  - component: {fileID: 114292371754480364}
   m_Layer: 0
   m_Name: Basilisco
   m_TagString: Untagged
@@ -10167,9 +10170,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1381663034931474}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.234, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalRotation: {x: 0.06922906, y: 0.6942448, z: -0.06738672, w: 0.7132254}
+  m_LocalPosition: {x: 67.75, y: 0.668, z: 220.44}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children:
   - {fileID: 4783138356394432}
   - {fileID: 4293464280355722}
@@ -10178,7 +10181,7 @@ Transform:
   - {fileID: 4096203251431260}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 11.088, y: 88.455, z: 0}
 --- !u!4 &4955297155317132
 Transform:
   m_ObjectHideFlags: 1
@@ -10343,6 +10346,92 @@ Transform:
   m_Father: {fileID: 4032407687855960}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95865909727929142
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1381663034931474}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 51641a42a0403db4cbb763ea766bc392, type: 3}
+  m_Controller: {fileID: 9100000, guid: c88851773d4a8f44da3a5aad201da757, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114292371754480364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1381663034931474}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d166255cacf07b4292b8402b3ddefc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 0.5
+  steeperCurves: 0
+  tweenGroup: 0
+  useFixedUpdate: 0
+  onFinished:
+  - mTarget: {fileID: 114315546294563118}
+    mMethodName: AttackFinished
+    mParameters: []
+    oneShot: 0
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: {x: 106.50875, y: 15.94, z: 42.86273}
+  to: {x: 0, y: 0, z: 0}
+  worldSpace: 0
+--- !u!114 &114315546294563118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1381663034931474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d72bb0748a83d6b448f4b8b51b7e4e6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenPosition: {fileID: 114292371754480364}
+  killed: {fileID: 0}
+  referencePoint: {fileID: 0}
+  scream: {fileID: 8300000, guid: d4713dfc32b0b2c4b9bac080906dee7d, type: 3}
 --- !u!137 &137055455626235754
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
