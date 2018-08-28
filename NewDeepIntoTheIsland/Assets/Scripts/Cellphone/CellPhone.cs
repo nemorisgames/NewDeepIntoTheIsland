@@ -16,7 +16,7 @@ public class CellPhone : MonoBehaviour
 	public Light light;
 	public Light lightStandBy;
     public GameObject lightOnText;
-	bool bringingPhoneUp = false;
+	bool movingPhoneToPosition = false;
 	public bool active = false;
     public Camera cameraPhone;
 
@@ -240,37 +240,30 @@ public class CellPhone : MonoBehaviour
 	}
 	IEnumerator PhoneUpAnimatedTransition()
 	{
-		bringingPhoneUp = true;
-		yield return new WaitForSeconds(.3f);
-		transform.parent = target;
-		Vector3 tVec = new Vector3(target.position.x, target.position.y, target.position.z) + target.right * positionSelected.x + target.forward * positionSelected.z + target.up * positionSelected.y;
-		transform.position = tVec;
+		movingPhoneToPosition = true;
+        transform.parent = target;
+        showHandAndPhone(true);
+        yield return new WaitForSeconds(.6f);
+        Vector3 tVec = target.right * positionSelected.x + target.forward * positionSelected.z + target.up * positionSelected.y;
+        transform.position = target.position + tVec;
 		transform.forward = target.forward;
 		transform.rotation = target.rotation;
-		bringingPhoneUp = false;
+		movingPhoneToPosition = false;
 	}
-    /*
-	void ShowNotificationIfActive()
-	{
-		if (showingNotification)
-		{
-			timeOut = Time.time;
-			InvokeRepeating("NotificationDuration", 0f, 1f);
-			showingNotification = false;
-			CancelInvoke("NotificationSound");
-		}
-	}*/
 
-	void ShowNotification(string message)
+    IEnumerator PhoneDownAnimatedTransition()
+    {
+        movingPhoneToPosition = true;
+        yield return new WaitForSeconds(.6f);
+        showHandAndPhone(false);
+        movingPhoneToPosition = false;
+    }
+
+    void ShowNotification(string message)
 	{
-		//if (!showingNotification)
-		//{
-            MessageReview.instance.AddMessage(message);
-			currentNotifications = 0;
-			//showingNotification = true; //can be used to close notification when she shows the cell phone
-			//InvokeRepeating("NotificationSound", 0f, 1.5f);
-            NotificationSound();
-        //}
+		MessageReview.instance.AddMessage(message);
+		currentNotifications = 0;
+        NotificationSound();
 	}
 	void NotificationSound()
 	{
@@ -335,20 +328,21 @@ public class CellPhone : MonoBehaviour
         if (GameMenu.Instance.menuActive) return;
         if (!phoneUp)
         {
+            //phone movement following player while down 
             if (target != null)
             {
                 Vector3 tVec = new Vector3(target.position.x, target.position.y, target.position.z) + target.right * position.x + target.forward * position.z + target.up * position.y;
-                transform.position = Vector3.Lerp(transform.position, tVec, Time.deltaTime * speed);
-                transform.forward = Vector3.Lerp(transform.forward, target.forward, Time.deltaTime * speedRotation);
+                transform.position = Vector3.Lerp(transform.position, tVec, Time.deltaTime * speed * 1f);
+                transform.forward = Vector3.Lerp(transform.forward, target.forward, Time.deltaTime * speedRotation * 1f);
             }
         }
         else
         {
-            if (transform.parent != target)
+            if (movingPhoneToPosition)
             {
-                Vector3 tVec = new Vector3(target.position.x, target.position.y, target.position.z) + target.right * positionSelected.x + target.forward * positionSelected.z + target.up * positionSelected.y;
-                transform.position = Vector3.Lerp(transform.position, tVec, Time.deltaTime * speed * 5f);
-                transform.forward = Vector3.Lerp(transform.forward, target.forward, Time.deltaTime * speedRotation * 10f);
+                Vector3 tVec = target.right * positionSelected.x + target.forward * positionSelected.z + target.up * positionSelected.y;
+                transform.position = Vector3.Lerp(transform.position, target.position + tVec, Time.deltaTime * speed * 2f);
+                transform.forward = Vector3.Lerp(transform.forward, target.forward, Time.deltaTime * speedRotation * 2f);
             }
         }
 
@@ -413,26 +407,22 @@ public class CellPhone : MonoBehaviour
         }
         else
         {
-            if (!bringingPhoneUp)
+            if (!movingPhoneToPosition)
             {
                 phoneUp = !phoneUp;
                 if (phoneUp)
                 {
                     StartCoroutine(PhoneUpAnimatedTransition());
-                    //ShowNotificationIfActive();
                 }
                 else
                 {
-                    //if (currentFunction == CellphoneFunctions.Menu)
-                    //{
-                        ChangeBatteryDuration(CellphoneFunctions.Menu);
-                        ResetToDefaults();
-                        transform.parent = null;
-                    //}
+                    ChangeBatteryDuration(CellphoneFunctions.Menu);
+                    ResetToDefaults();
+                    transform.parent = null;
+                    StartCoroutine(PhoneDownAnimatedTransition());
                 }
                 depthOfField.active = !phoneUp;
                 motionBlur.active = !phoneUp;
-                showHandAndPhone(phoneUp);
                 ScreenManager.Instance.CloseScreen();
             }
         }

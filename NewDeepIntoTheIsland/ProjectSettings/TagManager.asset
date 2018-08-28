@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Witcher
+  - AudioManager
+  - WitcherSpawnPositions
   layers:
   - Default
   - TransparentFX

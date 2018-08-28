@@ -6,8 +6,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Witcher : MonoBehaviour
 {
-    public Transform[] spawnPositions;
-    public Transform [] relativeSpawnPositions;
+    GameObject[] spawnPositions;
+    Transform [] relativeSpawnPositions;
     public bool useWaitTime = true;
     public bool approach = false;
     public float approachSpeed = 0.5f;
@@ -40,6 +40,10 @@ public class Witcher : MonoBehaviour
 
     void Start()
     {
+        spawnPositions = GameObject.FindGameObjectsWithTag("WitcherSpawnPositions");
+        relativeSpawnPositions = new Transform[2];
+        relativeSpawnPositions[0] = GameObject.FindGameObjectWithTag("Player").transform.Find("RelativeSpawn/Front");
+        relativeSpawnPositions[1] = GameObject.FindGameObjectWithTag("Player").transform.Find("RelativeSpawn/Back");
         // Cache agent component and destination
         agent = GetComponent<NavMeshAgent>();
         //destination = agent.destination;
@@ -70,22 +74,22 @@ public class Witcher : MonoBehaviour
 
     Transform GetClosestSpawnPosition(Transform t, float distanceMin = -1f)
     {
-        float distance = Vector3.Distance(spawnPositions[0].position, t.position);
+        float distance = Vector3.Distance(spawnPositions[0].transform.position, t.position);
         int indexSelected = 0;
         for(int i = 1; i < spawnPositions.Length; i++)
         {
-            if(Vector3.Distance(spawnPositions[i].position, t.position) < distance)
+            if(Vector3.Distance(spawnPositions[i].transform.position, t.position) < distance)
             {
-                distance = Vector3.Distance(spawnPositions[i].position, t.position);
+                distance = Vector3.Distance(spawnPositions[i].transform.position, t.position);
                 indexSelected = i;
             }
         }
 
         if (distanceMin >= 0f) {
-            if (distance <= distanceMin) return spawnPositions[indexSelected];
+            if (distance <= distanceMin) return spawnPositions[indexSelected].transform;
             else return null;
         }
-        return spawnPositions[indexSelected];
+        return spawnPositions[indexSelected].transform;
     }
 
     Transform GetSpawnPosition(SpawnPos preferred = SpawnPos.front, float fixedDistance = -1)
@@ -146,17 +150,6 @@ public class Witcher : MonoBehaviour
             ShowRenderizableObjects(true);
             GetComponent<AudioSource>().Play();
         }
-        /*switch (GameManager.instance.witcherStatus)
-        {
-            case GameManager.WitcherStatus.Hidden:
-                switch (w)
-                {
-                    case GameManager.WitcherStatus.Watching:
-                        currentTimeUntilChase = Time.time + timeUntilChase;
-                        break;
-                }
-                break;
-        }*/
         GameManager.instance.witcherStatus = w;
     }
 
@@ -171,7 +164,7 @@ public class Witcher : MonoBehaviour
             ChangeStatus(GameManager.WitcherStatus.Watching);
             currentTimeUntilChase = Time.time + timeUntilChase * Random.Range(0.4f, 2f);
             this.chasePlayer = chasePlayer;
-            animator.SetFloat("InputVertical", agent.velocity.magnitude * 0.1f);
+            //animator.SetFloat("InputVertical", agent.velocity.magnitude * 1f);
             if(approach){
                 agent.speed = approachSpeed;
                 destination = player.position;
@@ -244,6 +237,7 @@ public class Witcher : MonoBehaviour
                 break;
             case GameManager.WitcherStatus.Watching:
                 transform.LookAt(GameManager.instance.player.transform);
+                animator.SetFloat("InputVertical", agent.velocity.magnitude * 0.1f);
                 if (currentTimeUntilChase <= Time.time)
                 {
                     if(chasePlayer)

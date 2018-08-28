@@ -61,55 +61,56 @@ public class WeatherManager : MonoBehaviour
 
 	IEnumerator SmoothAudioChange(float time, float objectiveVolume, Weather weatherSound)
 	{
-		AudioSource one;
-		AudioSource two;
+		AudioSource currentAudioSource;
+		AudioSource objectiveAudioSource;
 		if (source.isPlaying)
 		{
-			one = source;
-			two = source_second;
+			currentAudioSource = source;
+			objectiveAudioSource = source_second;
 		}
 		else
 		{
-			two = source;
-			one = source_second;
+			objectiveAudioSource = source;
+			currentAudioSource = source_second;
 		}
         switch (weatherSound)
         {
             case Weather.RainNone:
-                two.clip = null;
+                objectiveAudioSource.clip = null;
                 break;
             case Weather.RainLow:
-                two.clip = weather_Sounds[0];
+                objectiveAudioSource.clip = weather_Sounds[0];
                 break;
             case Weather.RainNormal:
-                two.clip = weather_Sounds[1];
+                objectiveAudioSource.clip = weather_Sounds[1];
                 break;
             case Weather.RainHeavy:
-                two.clip = weather_Sounds[2];
+                objectiveAudioSource.clip = weather_Sounds[2];
                 break;
             case Weather.RainStorm:
-                two.clip = weather_Sounds[3];
+                objectiveAudioSource.clip = weather_Sounds[3];
                 break;
             case Weather.RainInside:
-                two.clip = weather_Sounds[4];
+                objectiveAudioSource.clip = weather_Sounds[4];
                 break;
         }
-		two.Play();
-		two.loop = true;
-		two.volume = 0f;
+		objectiveAudioSource.Play();
+		objectiveAudioSource.loop = true;
+		objectiveAudioSource.volume = 0f;
 		int steps = 50;
 		if (time == 0) time = steps;
-		float volumeStep = (((objectiveVolume)) / steps);
-		Debug.Log(volumeStep);
+		float volumeStepOne = (((currentAudioSource.volume)) / steps);
+        float volumeStepTwo = (((objectiveVolume)) / steps);
+        Debug.Log(volumeStepOne);
 		for (int i = 0; i < steps; i++)
 		{
 			yield return new WaitForSeconds(time / steps);
-			two.volume += volumeStep;
-			one.volume -= volumeStep;
+			objectiveAudioSource.volume += volumeStepTwo;
+			currentAudioSource.volume -= volumeStepOne;
 		}
-		two.volume = objectiveVolume;
-		one.Stop();
-		one.volume = objectiveVolume;
+		objectiveAudioSource.volume = objectiveVolume;
+		currentAudioSource.Stop();
+		currentAudioSource.volume = objectiveVolume;
 	}
 	IEnumerator SmoothWeatherChange(float time, float objectiveRate, float objectiveRateSheet)
 	{
@@ -156,7 +157,7 @@ public class WeatherManager : MonoBehaviour
             {
                 case Weather.RainNone:
                     StartCoroutine(SmoothWeatherChange(time, 0f, 0f));
-                    StartCoroutine(SmoothAudioChange(time, 0.5f, currentWeather));
+                    StartCoroutine(SmoothAudioChange(time, 0f, currentWeather));
                     //Debug.Log ("Low Rain");
                     break;
                 case Weather.RainLow:

@@ -165,8 +165,9 @@ public class vp_FPInput : vp_Component
 	protected virtual void InputRun()
 	{
 
-		if (vp_Input.GetButton("Run")
-			  || vp_Input.GetAxisRaw("LeftTrigger") > 0.5f		// sprint using the left gamepad trigger
+		if ((vp_Input.GetButton("Run")
+			  || vp_Input.GetAxisRaw("LeftTrigger") > 0.5f)		// sprint using the left gamepad trigger
+              && GameManager.instance.runEnabled
 			)
 			FPPlayer.Run.TryStart();
 		else

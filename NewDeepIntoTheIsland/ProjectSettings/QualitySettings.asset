@@ -42,8 +42,9 @@ QualitySettings:
     excludedTargetPlatforms:
     - iPhone
     - Windows Store Apps
+    - Standalone
   - serializedVersion: 2
-    name: Great
+    name: Normal
     pixelLightCount: 4
     shadows: 2
     shadowResolution: 2
@@ -79,7 +80,7 @@ QualitySettings:
     - iPhone
     - Windows Store Apps
   - serializedVersion: 2
-    name: Normal
+    name: Low
     pixelLightCount: 4
     shadows: 2
     shadowResolution: 2
@@ -99,7 +100,7 @@ QualitySettings:
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 0
     vSyncCount: 2
-    lodBias: 0.5
+    lodBias: 0.15
     maximumLODLevel: 0
     streamingMipmapsActive: 0
     streamingMipmapsAddAllCameras: 1

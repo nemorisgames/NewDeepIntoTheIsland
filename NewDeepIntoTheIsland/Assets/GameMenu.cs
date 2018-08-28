@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class GameMenu : MonoBehaviour {
 	public static GameMenu Instance {get{return _instance;}}
 	static GameMenu _instance;
@@ -14,12 +14,19 @@ public class GameMenu : MonoBehaviour {
 	AudioSource playerAudio, witcherAudio;
 	Witcher witcher;
 	float playerSpeed;
+    public CanvasGroup runCanvas;
+    TweenColorCanvas runIconTween;
+    Image runFill;
 
 	// Use this for initialization
 	void Awake () {
 		panel = GetComponent<CanvasGroup>();
 		_instance = this;
-	}
+
+        runFill = runCanvas.transform.Find("RunIcon").GetComponent<Image>();
+        runIconTween = runCanvas.transform.Find("RunIcon").GetComponent<TweenColorCanvas>();
+
+    }
 
 	void Start(){
 		player = GameManager.instance.player.GetComponent<vp_FPController>();
@@ -30,16 +37,6 @@ public class GameMenu : MonoBehaviour {
 		playerInput = player.GetComponent<vp_FPInput>();
 		panel.alpha = 0;
 		StartCoroutine(autoHideCursor());
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if(Input.GetKeyDown(KeyCode.Escape)){
-			EnableMenu(!menuActive);
-			if(!menuActive){
-				StartCoroutine(autoHideCursor());
-			}
-		}
 	}
 
 	public void Resume(){
@@ -135,4 +132,29 @@ public class GameMenu : MonoBehaviour {
 
 		canToggle = true;
 	}
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (GameManager.instance.currentRunEnergy < 100f)
+        {
+            if (!GameManager.instance.runEnabled && !runIconTween.running) runIconTween.StartTween();
+            if (runCanvas.alpha != 1f) runCanvas.alpha = 1f;
+            runFill.fillAmount = GameManager.instance.currentRunEnergy / 100f;
+        }
+        else
+        {
+            if (runCanvas.alpha != 0f) runCanvas.alpha = 0f;
+            if (GameManager.instance.runEnabled && runIconTween.running) runIconTween.StopTween();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            EnableMenu(!menuActive);
+            if (!menuActive)
+            {
+                StartCoroutine(autoHideCursor());
+            }
+        }
+    }
 }

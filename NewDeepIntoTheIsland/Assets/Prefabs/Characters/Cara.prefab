@@ -178,18 +178,10 @@ GameObject:
   - component: {fileID: 143542971539743356}
   - component: {fileID: 114220126967785964}
   - component: {fileID: 114090703493583404}
-  - component: {fileID: 114814920856273652}
   - component: {fileID: 114536056164328742}
   - component: {fileID: 82500958600793478}
-  - component: {fileID: 114360018042147626}
   - component: {fileID: 114700461753330376}
   - component: {fileID: 81668144876615464}
-  - component: {fileID: 114980265218273152}
-  - component: {fileID: 114261352066572274}
-  - component: {fileID: 114598736471513180}
-  - component: {fileID: 114814378700642020}
-  - component: {fileID: 114756419929410956}
-  - component: {fileID: 114098210188717370}
   - component: {fileID: 114552325779660586}
   - component: {fileID: 114628795009247630}
   m_Layer: 0
@@ -1401,43 +1393,6 @@ MonoBehaviour:
   MouseCursorZones: []
   MouseCursorForced: 0
   MouseCursorBlocksMouseLook: 1
---- !u!114 &114098210188717370
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879469805284586}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9cddb3bbeb3d36468f00a5177c170e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Persist: 0
-  States:
-  - TypeName: vp_PlayerFootFXHandler
-    Name: Default
-    TextAsset: {fileID: 0}
-    StatesToBlock: 
-  Children: []
-  Siblings: []
-  Family: []
-  Renderers: []
-  AudioSources: []
-  Mode: 3
-  FootstepImpactEvent: {fileID: 11400000, guid: c0b41502587e193479870e9bf925797a,
-    type: 2}
-  FootLeft: {fileID: 1193825068259398}
-  FootRight: {fileID: 1344379927607464}
-  TriggerHeight: 0.15
-  Sensitivity: 1.25
-  TimeInterval: 0.35
-  RequireMoveInput: 0
-  VerifyGroundContact: 0
-  ForceAlwaysAnimate: 1
-  JumpImpactEvent: {fileID: 11400000, guid: 99b30508304e6ff4ea0b3bea16fdc130, type: 2}
-  FallImpactEvent: {fileID: 11400000, guid: 84d80447291911e46b7ff27e4a8902d4, type: 2}
-  FallImpactThreshold: 0.15
-  m_MuteLocalFootsteps: 0
 --- !u!114 &114150238533484058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1785,57 +1740,6 @@ MonoBehaviour:
     format: 0
     data: 
   shadowDatas: []
---- !u!114 &114261352066572274
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879469805284586}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f51d02c672daf34b8feff75a9250455, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ItemRecords:
-    itemList: 56
-    helpbox: 139
-  m_ItemCaps:
-    itemList: 219
-    helpbox: 100
-  m_SpaceLimit:
-    spaceLimit: 77
-    helpbox: 221
-  ItemInstances: []
-  m_ItemCapInstances:
-  - Type: {fileID: 11400000, guid: 946f653b3250fba4caf20b0e8589e14a, type: 2}
-    Cap: 1
-  - Type: {fileID: 11400000, guid: 2fbc485ea2e99724eb6000259b3f0434, type: 2}
-    Cap: 1
-  - Type: {fileID: 11400000, guid: 9c735e67aa6215240940ff57b7665829, type: 2}
-    Cap: 1
-  - Type: {fileID: 11400000, guid: 29896fc7c28d9004a810cf00f1ad97e1, type: 2}
-    Cap: 1
-  - Type: {fileID: 11400000, guid: 324ca7eed539b8144ba9097e62aefd8a, type: 2}
-    Cap: 100
-  - Type: {fileID: 11400000, guid: c11d93b063eaa9043b51fa3831599c63, type: 2}
-    Cap: 100
-  m_UnitBankInstances: []
-  m_InternalUnitBanks: []
-  CapsEnabled: 1
-  SpaceEnabled: 0
-  SpaceMode: 0
-  AllowOnlyListed: 0
-  m_TotalSpace: 100
-  m_UsedSpace: 0
-  m_AutoWield:
-    Always: 0
-    IfUnarmed: 1
-    IfOutOfAmmo: 1
-    IfNotPresent: 1
-    FirstTimeOnly: 1
-    helpbox: 0
-  m_Misc:
-    ResetOnRespawn: 1
 --- !u!114 &114282730378335818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1900,33 +1804,6 @@ MonoBehaviour:
   SoundSwing:
   - {fileID: 8300000, guid: 6e0770a2d68e00d418bf0bc750316198, type: 3}
   SoundSwingPitch: {x: 1, y: 1.5}
---- !u!114 &114360018042147626
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879469805284586}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98c79b8dd5ff9e84fb6c162a28f67f65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowHUD: 0
-  BigFont: {fileID: 12800000, guid: 4721e7a71e3620b4dac13fdc767ee80a, type: 3}
-  SmallFont: {fileID: 12800000, guid: 4721e7a71e3620b4dac13fdc767ee80a, type: 3}
-  MessageFont: {fileID: 12800000, guid: 4721e7a71e3620b4dac13fdc767ee80a, type: 3}
-  BigFontOffset: 69
-  SmallFontOffset: 56
-  Background: {fileID: 2800000, guid: 6da7eead4121c784b9eeca88107cd164, type: 3}
-  HealthIcon: {fileID: 2800000, guid: c98bf25622f106947b63a571142e7b92, type: 3}
-  HealthMultiplier: 10
-  HealthColor: {r: 1, g: 1, b: 1, a: 1}
-  HealthLowLevel: 2.5
-  HealthLowColor: {r: 0.75, g: 0, b: 0, a: 1}
-  HealthLowSound: {fileID: 0}
-  HealthLowSoundInterval: 1
-  AmmoColor: {r: 1, g: 1, b: 1, a: 1}
-  AmmoLowColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &114461099785340212
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2173,20 +2050,6 @@ MonoBehaviour:
   MotionPositionRecoilCameraFactor: 0
   AnimationFire: {fileID: 0}
   AnimationOutOfAmmo: {fileID: 0}
---- !u!114 &114598736471513180
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879469805284586}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06712949a27cf8141882491962ac73b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InteractDistance: 2.5
-  InteractDistance3rdPerson: 3
-  MaxInteractDistance: 25
 --- !u!114 &114628795009247630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2515,28 +2378,6 @@ MonoBehaviour:
   Type: {fileID: 11400000, guid: 29896fc7c28d9004a810cf00f1ad97e1, type: 2}
   ID: 0
   weaponHelp: 191
---- !u!114 &114756419929410956
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879469805284586}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c2c8a92e1429a24ea763ec42ec37a89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SpawnMode: 1
-  SpawnPointTag: 
-  m_ObstructionSolver: 1
-  ObstructionRadius: 1
-  MinRespawnTime: 3
-  MaxRespawnTime: 3
-  LastRespawnTime: 0
-  SpawnOnAwake: 0
-  SpawnSound: {fileID: 8300000, guid: c6ffb5ccbd00a114494143e33e747a05, type: 3}
-  SpawnFXPrefabs: []
-  helpbox: 118
 --- !u!114 &114761087827403682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2658,37 +2499,6 @@ MonoBehaviour:
   useOldInspector: 0
   featuresFoldout: 1
   showAdditionalSettings: 0
---- !u!114 &114814378700642020
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879469805284586}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63ac6224fb5304b4394b608718aa7099, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114814920856273652
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879469805284586}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49fa1559690f5264185a0a5e9353db35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartWeapon: 0
-  AttackStateDisableDelay: 0.5
-  SetWeaponRefreshStatesDelay: 0.5
-  SetWeaponDuration: 0.1
-  SetWeaponReloadSleepDuration: 0.3
-  SetWeaponZoomSleepDuration: 0.3
-  SetWeaponAttackSleepDuration: 0.3
-  ReloadAttackSleepDuration: 0.3
-  ReloadAutomatically: 1
 --- !u!114 &114844078557457810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2899,37 +2709,6 @@ MonoBehaviour:
   Type: {fileID: 11400000, guid: 2fbc485ea2e99724eb6000259b3f0434, type: 2}
   ID: 0
   weaponHelp: 191
---- !u!114 &114980265218273152
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1879469805284586}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d45c3caadb0dedb45909441e14a8de7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHealth: 10
-  DeathSpawnObjects: []
-  MinDeathDelay: 0.3
-  MaxDeathDelay: 0.3
-  CurrentHealth: 0
-  LastDamageTime: 0
-  DeathSound: {fileID: 8300000, guid: 0405e24c9af9fce44b774de2c723967a, type: 3}
-  ImpactDamageThreshold: 10
-  ImpactDamageMultiplier: 1
-  Respawns: 0
-  MinRespawnTime: -99999
-  MaxRespawnTime: -99999
-  RespawnCheckRadius: -99999
-  RespawnSound: {fileID: 0}
-  DeathEffect: {fileID: 0}
-  helpbox: 95
-  AllowFallDamage: 1
-  FallDamageThreshold: 0.15
-  DeathOnFallImpactThreshold: 0
-  CameraShakeFactor: 0.02
 --- !u!143 &143542971539743356
 CharacterController:
   m_ObjectHideFlags: 1

@@ -13,7 +13,7 @@ public class DemoPresentacion : MonoBehaviour {
 	void Update(){
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        vp_Utility.LockCursor = true;
+        vp_Utility.LockCursor = false;
         if (Input.GetKeyDown(KeyCode.Escape))
 			Application.Quit();
 	}

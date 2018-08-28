@@ -18,6 +18,13 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public vp_FPInput playerInput;
     [HideInInspector]
+    public vp_FPController playerController;
+    public float runEnergyDeplededSpeed = 30f;
+    [HideInInspector]
+    public float currentRunEnergy = 100f;
+    [HideInInspector]
+    public bool runEnabled = true; //value readed by vp_FPInput when the run button is pressed
+    [HideInInspector]
     public GameObject player;
     [Header("Battery Settings")]
     [HideInInspector]
@@ -59,8 +66,10 @@ public class GameManager : MonoBehaviour {
         if(w != null)
             witcher = w.GetComponent<Witcher>();
         playerInput = player.GetComponent<vp_FPInput>();
+        playerController = player.GetComponent<vp_FPController>();
         if (audioTransformsUpdater != null)
             audioTransformsUpdater(player.transform, Camera.main.transform);
+        currentRunEnergy = 100f;
     }
 
     public void KillPlayer()
@@ -101,10 +110,35 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene("Accomplished");
     }
 
+    IEnumerator TiredFromRunning()
+    {
+        runEnabled = false;
+        for (int i = 0; i < 100; i++)
+        {
+            yield return new WaitForSeconds(5f / 100f);
+            currentRunEnergy += 1f;
+        }
+        //yield return new WaitForSeconds(5f);
+        runEnabled = true;
+        currentRunEnergy = 100f;
+    }
 
     // Update is called once per frame
     void Update () {
-        if (playerStatus == PlayerStatus.Dead) return;
+        if (playerController.StateEnabled("Run"))
+        {
+            if (runEnabled)
+            {
+                currentRunEnergy -= Time.deltaTime * runEnergyDeplededSpeed;
+                if (currentRunEnergy <= 0f)
+                {
+                    StartCoroutine(TiredFromRunning());
+                }
+            }
+        }
+        else
+            if(runEnabled)
+                currentRunEnergy = Mathf.Clamp(currentRunEnergy + Time.deltaTime * runEnergyDeplededSpeed * 0.5f, 0f, 100f);
         if (threatActivated)
         {
             if (currentTimeUntilDarknessKill < timeUntilDarknessKill)

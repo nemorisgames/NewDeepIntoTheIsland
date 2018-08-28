@@ -1,1 +1,0 @@
-If you want using demo scenes, you need to install the Post-Processing Stack.
