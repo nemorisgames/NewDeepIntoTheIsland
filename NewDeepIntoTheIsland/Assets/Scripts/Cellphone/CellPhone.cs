@@ -27,7 +27,7 @@ public class CellPhone : MonoBehaviour
 	//public Color unphoneUpColor;
 	public enum CellphoneFunctions { Menu, Light, CameraPhoto, ReviewPhotos, Message};
 	public CellphoneFunctions currentFunction = CellphoneFunctions.Light;
-    
+    UICamera interactionsCamera;
 	int indiceActual = 0;
 
     [Header("Battery")]
@@ -66,7 +66,10 @@ public class CellPhone : MonoBehaviour
 
     void Start()
 	{
-		notification.SetActive(false);
+        interactionsCamera = Camera.main.GetComponent<UICamera>();
+        interactionsCamera.enabled = false;
+
+        notification.SetActive(false);
 		cellphoneBody = transform.Find("Cuerpo").gameObject;
 		cellphoneBody.SetActive(active);
         volume.profile.TryGetSettings(out depthOfField);
@@ -374,12 +377,14 @@ public class CellPhone : MonoBehaviour
             {
                 case CellphoneFunctions.Light:
                     turnLight(!light.enabled);
+                    interactionsCamera.enabled = false;
                     break;
                 case CellphoneFunctions.CameraPhoto:
                     if (ScreenManager.Instance.GetCurrentType() != ScreenType.Camera)
                     {
                         ScreenManager.Instance.ShowScreen(ScreenType.Camera);
                         ChangeBatteryDuration(CellphoneFunctions.CameraPhoto);
+                        interactionsCamera.enabled = false;
                         activateCameraPhone(true);
                     }
                     else
@@ -388,10 +393,12 @@ public class CellPhone : MonoBehaviour
                 case CellphoneFunctions.ReviewPhotos:
                     ScreenManager.Instance.ShowScreen(ScreenType.PhotoView);
                     ChangeBatteryDuration(CellphoneFunctions.ReviewPhotos);
+                    interactionsCamera.enabled = true;
                     canUseMouseScroll = false;
                     break;
                 case CellphoneFunctions.Message:
                     ScreenManager.Instance.ShowScreen(ScreenType.Message);
+                    interactionsCamera.enabled = true;
                     ChangeBatteryDuration(CellphoneFunctions.Message);
                     break;
             }
@@ -426,5 +433,6 @@ public class CellPhone : MonoBehaviour
                 ScreenManager.Instance.CloseScreen();
             }
         }
+        interactionsCamera.enabled = false;
     }
 }
